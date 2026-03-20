@@ -161,9 +161,7 @@ iara-games/
 - Como Visualizar
 
 1. Clone o repositório:
-   ```bash
-   git clone https://github.com/SEU_USUARIO/iara-games.git
-   ```
+[](https://github.com/bebel127/iaragames)   
 2. Abra o arquivo `index.html` diretamente no navegador.
 
 Não foi exigido JavaScript.
