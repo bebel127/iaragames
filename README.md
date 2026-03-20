@@ -1,7 +1,7 @@
 Iara Games
 
--> Plataforma brasileira de distribuição de games
--> Sprint 01 — UMA NOVA JORNADA
+- Plataforma brasileira de distribuição de games
+- Sprint 01 — UMA NOVA JORNADA
 
 
 
@@ -186,10 +186,7 @@ Checklist da Sprint 01
 
 
 Feito por:
-
-> Sprint 01 — Projeto Iara Games  
 > Isabela Silva Santos - RM564589
+> Sprint 01 — UMA NOVA JORNADA - Projeto Iara Games  
 
 
-
-*"Das profundezas das águas, a Iara canta. Da tela do computador, os games chamam."*
