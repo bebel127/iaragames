@@ -1,0 +1,1039 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Iara Games — Plataforma de distribuição de games. Descubra, explore e jogue." />
+  <title>Iara Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+ 
+
+    :root {
+      --cor-fundo:        #0b1a1f;
+      --cor-fundo-alt:    #0f2229;
+      --cor-card:         #112830;
+      --cor-borda:        #1e4a54;
+
+      --cor-agua-profunda:#1a6070;
+      --cor-agua-media:   #2a8a9e;
+      --cor-agua-clara:   #4db8cc;
+      --cor-agua-brilho:  #7de0ef;
+
+      --cor-floresta:     #1e4a30;
+      --cor-folha:        #2d7a4a;
+      --cor-folha-clara:  #4aad6e;
+
+      --cor-mistico:      #8b5e9e;
+      --cor-mistico-clara:#b388c8;
+
+      --cor-areia:        #c8a96e;
+      --cor-areia-clara:  #e0c898;
+
+      --cor-texto:        #d8eef2;
+      --cor-texto-muted:  #8ab8c2;
+      --cor-texto-sutil:  #4d8090;
+
+      --fonte-titulo:     'Cinzel', serif;
+      --fonte-corpo:      'Nunito', sans-serif;
+
+      --raio:             8px;
+      --raio-lg:          16px;
+      --sombra:           0 4px 24px rgba(0,0,0,0.45);
+      --sombra-agua:      0 0 32px rgba(77,184,204,0.12);
+    }
+
+ 
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-corpo);
+      font-size: 16px;
+      line-height: 1.7;
+      min-height: 100vh;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+      /* Acessibilidade: alt obrigatório em todas as imagens no HTML */
+    }
+
+    a {
+      color: var(--cor-agua-clara);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    a:hover,
+    a:focus {
+      color: var(--cor-agua-brilho);
+    }
+
+    /* Foco visível para navegação por teclado */
+    a:focus-visible,
+    button:focus-visible {
+      outline: 2px solid var(--cor-agua-brilho);
+      outline-offset: 3px;
+      border-radius: 3px;
+    }
+
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 1rem;
+      background: var(--cor-agua-media);
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border-radius: var(--raio);
+      z-index: 9999;
+      font-weight: 700;
+      font-family: var(--fonte-corpo);
+    }
+
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background-color: rgba(11, 26, 31, 0.92);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--cor-borda);
+    }
+
+    nav {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .logo-icone {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--cor-agua-profunda), var(--cor-mistico));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    .logo-texto {
+      font-family: var(--fonte-titulo);
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: var(--cor-agua-brilho);
+    }
+
+    .nav-links {
+      display: flex;
+      list-style: none;
+      gap: 0.25rem;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: var(--cor-texto-muted);
+      font-size: 0.9rem;
+      font-weight: 600;
+      padding: 0.4rem 0.9rem;
+      border-radius: var(--raio);
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.02em;
+    }
+
+    .nav-links a:hover,
+    .nav-links a:focus {
+      background: rgba(77,184,204,0.1);
+      color: var(--cor-agua-clara);
+    }
+
+    .btn-nav {
+      background: var(--cor-agua-profunda);
+      color: var(--cor-agua-brilho) !important;
+      border: 1px solid var(--cor-agua-media);
+    }
+
+    .btn-nav:hover,
+    .btn-nav:focus {
+      background: var(--cor-agua-media) !important;
+      color: #fff !important;
+    }
+
+  
+    .hero {
+      position: relative;
+      min-height: 88vh;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      padding: 4rem 1.5rem;
+    }
+
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,96,112,0.35) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(30,74,48,0.25) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 85% 70%, rgba(139,94,158,0.18) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .hero-conteudo {
+      position: relative;
+      max-width: 1200px;
+      margin: 0 auto;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-texto h1 {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      font-weight: 900;
+      line-height: 1.1;
+      letter-spacing: 0.02em;
+      color: var(--cor-agua-brilho);
+      margin-bottom: 0.4rem;
+    }
+
+    .hero-subtitulo {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      color: var(--cor-areia-clara);
+      letter-spacing: 0.1em;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      text-transform: uppercase;
+    }
+
+    .hero-desc {
+      color: var(--cor-texto-muted);
+      font-size: 1.05rem;
+      max-width: 480px;
+      margin-bottom: 2.5rem;
+      line-height: 1.8;
+    }
+
+    .hero-acoes {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--raio);
+      font-family: var(--fonte-corpo);
+      font-size: 0.95rem;
+      font-weight: 700;
+      cursor: pointer;
+      border: none;
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+      letter-spacing: 0.03em;
+      text-decoration: none;
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-primario {
+      background: var(--cor-agua-media);
+      color: #fff;
+      box-shadow: 0 4px 20px rgba(42,138,158,0.4);
+    }
+
+    .btn-primario:hover,
+    .btn-primario:focus {
+      background: var(--cor-agua-clara);
+      color: var(--cor-fundo);
+      box-shadow: 0 6px 28px rgba(77,184,204,0.5);
+    }
+
+    .btn-secundario {
+      background: transparent;
+      color: var(--cor-agua-brilho);
+      border: 1.5px solid var(--cor-agua-media);
+    }
+
+    .btn-secundario:hover,
+    .btn-secundario:focus {
+      background: rgba(77,184,204,0.1);
+    }
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .card-destaque {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg);
+      padding: 1.5rem;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: var(--sombra), var(--sombra-agua);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-destaque::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cor-agua-profunda), var(--cor-mistico), var(--cor-agua-clara));
+    }
+
+    .card-capa {
+      width: 100%;
+      height: 180px;
+      background: linear-gradient(135deg, #0f2a35 0%, #1a4050 40%, #0d2030 100%);
+      border-radius: var(--raio);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card-capa::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 60px;
+      background: linear-gradient(transparent, rgba(10,25,30,0.8));
+    }
+
+    .card-tag {
+      display: inline-block;
+      background: rgba(77,184,204,0.15);
+      color: var(--cor-agua-clara);
+      border: 1px solid rgba(77,184,204,0.3);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.6rem;
+    }
+
+    .card-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: 1.15rem;
+      color: var(--cor-texto);
+      margin-bottom: 0.4rem;
+    }
+
+    .card-preco {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--cor-areia-clara);
+    }
+
+    .card-preco .de {
+      font-size: 0.85rem;
+      color: var(--cor-texto-sutil);
+      text-decoration: line-through;
+      margin-right: 0.4rem;
+      font-weight: 400;
+    }
+
+  
+    section {
+      padding: 5rem 1.5rem;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .secao-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      color: var(--cor-agua-brilho);
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.03em;
+    }
+
+    .secao-subtitulo {
+      color: var(--cor-texto-muted);
+      font-size: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .secao-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .ver-todos {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--cor-agua-media);
+      white-space: nowrap;
+    }
+
+    .ver-todos:hover {
+      color: var(--cor-agua-brilho);
+    }
+
+
+    #jogos {
+      background-color: var(--cor-fundo-alt);
+    }
+
+    .grid-jogos {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .jogo-card {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg);
+      overflow: hidden;
+      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+
+    .jogo-card:hover,
+    .jogo-card:focus-within {
+      transform: translateY(-4px);
+      box-shadow: var(--sombra), 0 0 20px rgba(77,184,204,0.15);
+      border-color: var(--cor-agua-media);
+    }
+
+    .jogo-thumb {
+      width: 100%;
+      aspect-ratio: 2/3;
+      object-fit: cover;
+      background: linear-gradient(160deg, #0f2a35, #1a3a28);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 3rem;
+    }
+
+    .jogo-info {
+      padding: 0.85rem;
+    }
+
+    .jogo-nome {
+      font-family: var(--fonte-titulo);
+      font-size: 0.9rem;
+      color: var(--cor-texto);
+      margin-bottom: 0.3rem;
+      line-height: 1.3;
+    }
+
+    .jogo-genero {
+      font-size: 0.75rem;
+      color: var(--cor-texto-sutil);
+      margin-bottom: 0.5rem;
+    }
+
+    .jogo-preco {
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--cor-areia-clara);
+    }
+
+    .jogo-preco.gratis {
+      color: var(--cor-folha-clara);
+    }
+
+    #categorias {
+      background-color: var(--cor-fundo);
+    }
+
+    .grid-categorias {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .categoria-card {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg);
+      padding: 1.5rem 1rem;
+      text-align: center;
+      transition: background 0.2s, border-color 0.2s, transform 0.15s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .categoria-card:hover,
+    .categoria-card:focus {
+      background: rgba(26,96,112,0.2);
+      border-color: var(--cor-agua-media);
+      transform: translateY(-2px);
+    }
+
+    .categoria-icone {
+      font-size: 2rem;
+    }
+
+    .categoria-nome {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--cor-texto-muted);
+      letter-spacing: 0.03em;
+    }
+
+       #destaques {
+      background: linear-gradient(180deg, var(--cor-fundo-alt) 0%, var(--cor-fundo) 100%);
+    }
+
+    .banner-destaque {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg);
+      padding: 3rem 2.5rem;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 3rem;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--sombra-agua);
+    }
+
+    .banner-destaque::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 70% 100% at 80% 50%, rgba(26,96,112,0.2), transparent);
+      pointer-events: none;
+    }
+
+    .banner-tag {
+      display: inline-block;
+      background: rgba(139,94,158,0.2);
+      color: var(--cor-mistico-clara);
+      border: 1px solid rgba(139,94,158,0.4);
+      padding: 0.25rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1rem;
+    }
+
+    .banner-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1.5rem, 3vw, 2.4rem);
+      color: var(--cor-texto);
+      margin-bottom: 0.75rem;
+      line-height: 1.2;
+    }
+
+    .banner-desc {
+      color: var(--cor-texto-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1.75rem;
+      line-height: 1.8;
+    }
+
+    .banner-imagem {
+      width: 100%;
+      aspect-ratio: 16/10;
+      background: linear-gradient(135deg, #0f2a35 0%, #1a1530 50%, #0f2a1f 100%);
+      border-radius: var(--raio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+      position: relative;
+    }
+
+    #sobre {
+      background-color: var(--cor-fundo-alt);
+    }
+
+    .grid-pilares {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .pilar-card {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg);
+      padding: 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pilar-card::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 60px;
+      height: 3px;
+      background: var(--cor-agua-media);
+    }
+
+    .pilar-icone {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .pilar-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: 1rem;
+      color: var(--cor-agua-brilho);
+      margin-bottom: 0.5rem;
+    }
+
+    .pilar-desc {
+      color: var(--cor-texto-muted);
+      font-size: 0.9rem;
+      line-height: 1.7;
+    }
+
+
+    footer {
+      background-color: var(--cor-fundo);
+      border-top: 1px solid var(--cor-borda);
+      padding: 3rem 1.5rem;
+    }
+
+    .footer-conteudo {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-marca .logo-texto {
+      display: block;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-marca p {
+      color: var(--cor-texto-sutil);
+      font-size: 0.85rem;
+      line-height: 1.7;
+      max-width: 240px;
+    }
+
+    .footer-coluna h3 {
+      font-family: var(--fonte-titulo);
+      font-size: 0.85rem;
+      color: var(--cor-areia-clara);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .footer-coluna ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .footer-coluna a {
+      color: var(--cor-texto-sutil);
+      font-size: 0.875rem;
+      transition: color 0.2s;
+    }
+
+    .footer-coluna a:hover,
+    .footer-coluna a:focus {
+      color: var(--cor-texto-muted);
+    }
+
+    .footer-base {
+      max-width: 1200px;
+      margin: 2rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-base p {
+      color: var(--cor-texto-sutil);
+      font-size: 0.8rem;
+    }
+
+
+    @media (max-width: 768px) {
+      .hero-conteudo {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+
+      .banner-destaque {
+        grid-template-columns: 1fr;
+      }
+
+      .banner-imagem {
+        display: none;
+      }
+
+      .footer-conteudo {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .footer-conteudo {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      * {
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Skip link para acessibilidade por teclado -->
+  <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- ====== CABEÇALHO / NAVEGAÇÃO ====== -->
+  <header>
+    <nav role="navigation" aria-label="Navegação principal">
+      <a href="#" class="logo" aria-label="Iara Games - Página inicial">
+        <span class="logo-icone" aria-hidden="true">🌊</span>
+        <span class="logo-texto">Iara Games</span>
+      </a>
+
+      <ul class="nav-links" role="list">
+        <li><a href="#jogos">Jogos</a></li>
+        <li><a href="#categorias">Categorias</a></li>
+        <li><a href="#destaques">Destaques</a></li>
+        <li><a href="#sobre">Sobre</a></li>
+        <li><a href="#login" class="btn-nav">Entrar</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="hero-conteudo">
+        <div class="hero-texto">
+          <p class="hero-subtitulo">A plataforma brasileira de games</p>
+          <h1 id="hero-titulo">Mergulhe no universo dos jogos</h1>
+          <p class="hero-desc">
+            Descubra, explore e jogue. Iara Games reúne os melhores títulos nacionais e internacionais em um só lugar — com a alma do Brasil nas águas profundas do entretenimento digital.
+          </p>
+          <div class="hero-acoes">
+            <a href="#jogos" class="btn btn-primario">Explorar jogos</a>
+            <a href="#sobre" class="btn btn-secundario">Saiba mais</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="card-destaque">
+            <div class="card-capa">🎮</div>
+            <span class="card-tag">Em destaque</span>
+            <h2 class="card-titulo">Jogo da Semana</h2>
+            <p class="card-preco">
+              <span class="de">R$ 79,90</span>
+              R$ 39,90
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="jogos" aria-labelledby="titulo-jogos">
+      <div class="container">
+        <div class="secao-header">
+          <div>
+            <h2 id="titulo-jogos" class="secao-titulo">Jogos populares</h2>
+            <p class="secao-subtitulo">Os mais jogados da semana na plataforma</p>
+          </div>
+          <a href="#jogos" class="ver-todos" aria-label="Ver todos os jogos populares">Ver todos →</a>
+        </div>
+
+        <div class="grid-jogos" role="list">
+          <!-- Cada card seria um jogo real futuramente -->
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Floresta Encantada">
+            <div class="jogo-thumb" aria-hidden="true">🌿</div>
+            <div class="jogo-info">
+              <h3 class="jogo-nome">Floresta Encantada</h3>
+              <p class="jogo-genero">Aventura · RPG</p>
+              <p class="jogo-preco">R$ 49,90</p>
+            </div>
+          </article>
+
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Lendas do Rio">
+            <div class="jogo-thumb" aria-hidden="true">🐊</div>
+            <div class="jogo-info">
+              <h3 class="jogo-nome">Lendas do Rio</h3>
+              <p class="jogo-genero">Ação · Plataforma</p>
+              <p class="jogo-preco">R$ 29,90</p>
+            </div>
+          </article>
+
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Cosmos Tribal">
+            <div class="jogo-thumb" aria-hidden="true">🌌</div>
+            <div class="jogo-info">
+              <h3 class="jogo-nome">Cosmos Tribal</h3>
+              <p class="jogo-genero">Estratégia · Puzzle</p>
+              <p class="jogo-preco">R$ 19,90</p>
+            </div>
+          </article>
+
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Caçador de Sombras - gratuito">
+            <div class="jogo-thumb" aria-hidden="true">⚔️</div>
+            <div class="jogo-info">
+              <h3 class="jogo-nome">Caçador de Sombras</h3>
+              <p class="jogo-genero">RPG · Indie</p>
+              <p class="jogo-preco gratis">Gratuito</p>
+            </div>
+          </article>
+
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Mar de Fogo">
+            <div class="jogo-thumb" aria-hidden="true">🔥</div>
+            <div class="jogo-info">
+              <h3 class="jogo-nome">Mar de Fogo</h3>
+              <p class="jogo-genero">Corrida · Arcade</p>
+              <p class="jogo-preco">R$ 14,90</p>
+            </div>
+          </article>
+
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Espírito da Mata">
+            <div class="jogo-thumb" aria-hidden="true">🦅</div>
+            <div class="jogo-info">
+              <h3 class="jogo-nome">Espírito da Mata</h3>
+              <p class="jogo-genero">Exploração · Indie</p>
+              <p class="jogo-preco">R$ 34,90</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="categorias" aria-labelledby="titulo-categorias">
+      <div class="container">
+        <h2 id="titulo-categorias" class="secao-titulo">Categorias</h2>
+        <p class="secao-subtitulo">Explore por estilo de jogo</p>
+
+        <div class="grid-categorias" role="list">
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Ação">
+            <span class="categoria-icone" aria-hidden="true">⚔️</span>
+            <span class="categoria-nome">Ação</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Aventura">
+            <span class="categoria-icone" aria-hidden="true">🗺️</span>
+            <span class="categoria-nome">Aventura</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: RPG">
+            <span class="categoria-icone" aria-hidden="true">🧙</span>
+            <span class="categoria-nome">RPG</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Estratégia">
+            <span class="categoria-icone" aria-hidden="true">♟️</span>
+            <span class="categoria-nome">Estratégia</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Puzzle">
+            <span class="categoria-icone" aria-hidden="true">🧩</span>
+            <span class="categoria-nome">Puzzle</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Indie">
+            <span class="categoria-icone" aria-hidden="true">💎</span>
+            <span class="categoria-nome">Indie</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Multijogador">
+            <span class="categoria-icone" aria-hidden="true">👥</span>
+            <span class="categoria-nome">Multi</span>
+          </a>
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Gratuito">
+            <span class="categoria-icone" aria-hidden="true">🎁</span>
+            <span class="categoria-nome">Gratuito</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section id="destaques" aria-labelledby="titulo-destaque">
+      <div class="container">
+        <div class="banner-destaque">
+          <div>
+            <span class="banner-tag">🌊 Lançamento exclusivo</span>
+            <h2 id="titulo-destaque" class="banner-titulo">Descubra o jogo do mês</h2>
+            <p class="banner-desc">
+              Todo mês, a Iara Games seleciona um título especial com desconto exclusivo para membros da plataforma. Junte-se à comunidade e não perca as ofertas.
+            </p>
+            <a href="#jogos" class="btn btn-primario">Ver oferta</a>
+          </div>
+          <div class="banner-imagem" aria-hidden="true">🎯</div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre" aria-labelledby="titulo-sobre">
+      <div class="container">
+        <h2 id="titulo-sobre" class="secao-titulo">Sobre a Iara Games</h2>
+        <p class="secao-subtitulo">Uma plataforma feita com a alma do Brasil</p>
+
+        <p style="color: var(--cor-texto-muted); max-width: 680px; margin-bottom: 0.5rem; line-height: 1.9;">
+          A Iara Games nasce da inspiração na lenda da Iara — a sereia dos rios amazônicos, guardiã das águas e das histórias do povo brasileiro. Nossa plataforma é um portal entre jogadores e jogos, com curadoria, segurança e uma experiência fluida como as águas do rio.
+        </p>
+
+        <div class="grid-pilares">
+          <div class="pilar-card">
+            <div class="pilar-icone" aria-hidden="true">🎮</div>
+            <h3 class="pilar-titulo">Grande catálogo</h3>
+            <p class="pilar-desc">Jogos nacionais e internacionais, indie e AAA, para todos os gostos e bolsos.</p>
+          </div>
+          <div class="pilar-card">
+            <div class="pilar-icone" aria-hidden="true">🔒</div>
+            <h3 class="pilar-titulo">Compra segura</h3>
+            <p class="pilar-desc">Pagamento protegido, entrega digital instantânea e suporte dedicado.</p>
+          </div>
+          <div class="pilar-card">
+            <div class="pilar-icone" aria-hidden="true">🌱</div>
+            <h3 class="pilar-titulo">Devs brasileiros</h3>
+            <p class="pilar-desc">Apoiamos e promovemos desenvolvedores independentes do Brasil.</p>
+          </div>
+          <div class="pilar-card">
+            <div class="pilar-icone" aria-hidden="true">👥</div>
+            <h3 class="pilar-titulo">Comunidade</h3>
+            <p class="pilar-desc">Conecte-se com outros jogadores, avalie títulos e participe de eventos.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="login" aria-labelledby="titulo-login" style="padding: 4rem 1.5rem; background: var(--cor-fundo);">
+      <div class="container" style="text-align:center; max-width: 480px;">
+        <h2 id="titulo-login" class="secao-titulo" style="margin-bottom:0.5rem;">Crie sua conta</h2>
+        <p style="color:var(--cor-texto-muted); margin-bottom:2rem;">Acesse o catálogo completo, salve favoritos e gerencie sua biblioteca.</p>
+        <a href="#sobre" class="btn btn-primario" style="margin: 0 auto;">Começar agora</a>
+        <p style="margin-top: 1rem; font-size:0.875rem; color:var(--cor-texto-sutil);">
+          Já tem conta? <a href="#login">Entrar</a>
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <div class="footer-conteudo">
+      <div class="footer-marca">
+        <a href="#" class="logo-texto" aria-label="Iara Games">🌊 Iara Games</a>
+        <p>Plataforma brasileira de distribuição de games. Mergulhe no universo dos jogos com a gente.</p>
+      </div>
+
+      <div class="footer-coluna">
+        <h3>Explorar</h3>
+        <ul>
+          <li><a href="#jogos">Jogos</a></li>
+          <li><a href="#categorias">Categorias</a></li>
+          <li><a href="#destaques">Destaques</a></li>
+          <li><a href="#sobre">Novidades</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-coluna">
+        <h3>Conta</h3>
+        <ul>
+          <li><a href="#login">Entrar</a></li>
+          <li><a href="#login">Criar conta</a></li>
+          <li><a href="#sobre">Biblioteca</a></li>
+          <li><a href="#sobre">Favoritos</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-coluna">
+        <h3>Suporte</h3>
+        <ul>
+          <li><a href="#sobre">Ajuda</a></li>
+          <li><a href="#sobre">Política de privacidade</a></li>
+          <li><a href="#sobre">Termos de uso</a></li>
+          <li><a href="#sobre">Contato</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-base">
+      <p>© 2025 Iara Games. Todos os direitos reservados.</p>
+      <p style="color:var(--cor-texto-sutil); font-size:0.8rem;">Feito com 💙 no Brasil</p>
+    </div>
+  </footer>
+
+</body>
+</html>
