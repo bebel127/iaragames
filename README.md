@@ -55,7 +55,7 @@ Design — Justificativas:
 
 As decisões de design foram baseadas no conteúdo da apostila "Impactante e Funcional", que define design como o desenvolvimento de projetos que sejam ao mesmo tempo úteis, eficientes e esteticamente adequados à cultura do público-alvo.
 
-Seguindo as etapas do processo criativo descritas no material — conhecimento, definição, associações, brainstorm e seleção — partimos do conhecimento sobre a lenda da Iara e o universo gamer para criar associações que resultaram na identidade visual: águas profundas + mistério + imersão digital.
+Seguindo as etapas do processo criativo descritas no material: conhecimento, definição, associações, brainstorm e seleção, partimos do conhecimento sobre a lenda da Iara e o universo gamer para criar associações que resultaram na identidade visual: águas profundas + mistério + imersão digital.
 
 Paleta de Cores:
 
@@ -76,7 +76,7 @@ A paleta foi construída em torno da essência da Iara: águas tropicais, misté
 Tipografia:
 
 Cinzel (Google Fonts) — títulos e logotipo  
-Fonte serifada com traços clássicos e elegantes, inspirada em inscrições romanas. Transmite autoridade, mistério e atemporalidade — adequada para o caráter lendário da Iara;
+Fonte serifada com traços clássicos e elegantes, inspirada em inscrições romanas. Transmite autoridade, mistério e atemporalidade, adequada para o caráter lendário da Iara;
 
 Nunito (Google Fonts) — corpo de texto e interface  
 Fonte sans-serif arredondada, moderna e altamente legível em telas. O arredondamento suave contrasta bem com a seriedade da Cinzel, criando equilíbrio entre o épico e o acolhedor;
@@ -84,7 +84,7 @@ Fonte sans-serif arredondada, moderna e altamente legível em telas. O arredonda
 Decisões Visuais:
 
 1. Tema escuro (dark theme) 
-Games são consumidos majoritariamente em ambientes com pouca luz. O tema escuro reduz o cansaço visual, valoriza as cores de destaque e cria a atmosfera imersiva característica do universo gamer — além de reforçar a ideia das "profundezas" associadas à Iara.
+Games são consumidos majoritariamente em ambientes com pouca luz. O tema escuro reduz o cansaço visual, valoriza as cores de destaque e cria a atmosfera imersiva característica do universo gamer, além de reforçar a ideia das "profundezas" associadas à Iara.
 
 2. Cards com formato retrato para jogos  
 O formato vertical (aspect-ratio 2:3) imita capas de jogos físicos e é o padrão consagrado em plataformas como Steam e Epic. Cria escaneabilidade visual rápida e funciona bem em grids responsivos.
@@ -120,7 +120,7 @@ Heurística 4 — Consistência e padronização:
 Mesmas cores, fontes, espaçamentos e componentes (cards, botões, seções) em toda a página. Conforme Nielsen (1994), a padronização facilita a memorização e aprendizagem do sistema pelo usuário.
 
 Heurística 8 — Estética e design minimalista: 
-Cada seção contém apenas os elementos necessários para seu objetivo. Evitamos sobrecarregar visualmente o usuário com informações ou decorações que não agregam à navegação — o que o material define como "ruído".
+Cada seção contém apenas os elementos necessários para seu objetivo. Evitamos sobrecarregar visualmente o usuário com informações ou decorações que não agregam à navegação,  o que o material define como "ruído".
 
 Outros Cuidados Implementados:
 
@@ -128,7 +128,7 @@ Outros Cuidados Implementados:
 Todos os pares texto/fundo foram escolhidos para atingir no mínimo a razão de contraste 4.5:1 exigida pela WCAG 2.1. O texto principal (`#d8eef2`) sobre o fundo (`#0b1a1f`) supera 12:1. Conforme ensinado no módulo de acessibilidade, isso também beneficia usuários daltônicos que dependem de contraste para distinguir elementos.
 
 - Skip link (pular para o conteúdo)  
-O primeiro elemento do `<body>` é um link invisível que aparece ao receber foco via teclado (`Tab`), permitindo que usuários de leitores de tela pulem direto para o conteúdo principal — atendendo ao princípio Operável da WCAG 2.1.
+O primeiro elemento do `<body>` é um link invisível que aparece ao receber foco via teclado (`Tab`), permitindo que usuários de leitores de tela pulem direto para o conteúdo principal, atendendo ao princípio Operável da WCAG 2.1.
 
 - Foco visível para navegação por teclado  
 Todos os elementos interativos possuem estilo `:focus-visible` com `outline` em cor de alto contraste, permitindo navegação sem mouse — recurso destacado no material como fundamental para usuários com mobilidade reduzida.
@@ -143,7 +143,7 @@ Responsividade:
 A página adapta-se a diferentes tamanhos de tela via CSS Grid, garantindo acesso em dispositivos móveis sem JavaScript.
 
 Preferência de movimento reduzido 
-`@media (prefers-reduced-motion: reduce)` desativa todas as transições para usuários que configuraram o sistema para reduzir animações — beneficia pessoas com epilepsia fotossensível e distúrbios vestibulares.
+`@media (prefers-reduced-motion: reduce)` desativa todas as transições para usuários que configuraram o sistema para reduzir animações, beneficia pessoas com epilepsia fotossensível e distúrbios vestibulares.
 
 
 
@@ -166,7 +166,7 @@ iara-games/
    ```
 2. Abra o arquivo `index.html` diretamente no navegador.
 
-Não é necessário servidor, back-end ou dependências — apenas HTML e CSS puros.
+Não foi exigido JavaScript.
 
 
 
