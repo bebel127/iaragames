@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Iara Games — Entre na sua conta ou crie uma nova para acessar o catálogo completo de jogos." />
+  <title>Entrar / Cadastrar — Iara Games</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== VARIÁVEIS ===== */
+    :root {
+      --cor-fundo:         #0b1a1f;
+      --cor-fundo-alt:     #0f2229;
+      --cor-card:          #112830;
+      --cor-borda:         #1e4a54;
+      --cor-borda-foco:    #4db8cc;
+
+      --cor-agua-profunda: #1a6070;
+      --cor-agua-media:    #2a8a9e;
+      --cor-agua-clara:    #4db8cc;
+      --cor-agua-brilho:   #7de0ef;
+
+      --cor-mistico:       #8b5e9e;
+      --cor-mistico-clara: #b388c8;
+
+      --cor-areia-clara:   #e0c898;
+      --cor-verde-clara:   #4aad6e;
+
+      --cor-erro:          #e05c5c;
+      --cor-erro-bg:       rgba(224,92,92,0.1);
+      --cor-sucesso:       #4aad6e;
+      --cor-sucesso-bg:    rgba(74,173,110,0.1);
+
+      --cor-texto:         #d8eef2;
+      --cor-texto-muted:   #8ab8c2;
+      --cor-texto-sutil:   #4d8090;
+
+      --fonte-titulo:      'Cinzel', serif;
+      --fonte-corpo:       'Nunito', sans-serif;
+
+      --raio:              8px;
+      --raio-lg:           16px;
+      --sombra:            0 4px 24px rgba(0,0,0,0.45);
+      --sombra-agua:       0 0 40px rgba(77,184,204,0.12);
+    }
+
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--cor-fundo);
+      color: var(--cor-texto);
+      font-family: var(--fonte-corpo);
+      font-size: 16px; line-height: 1.7;
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+    }
+    a { color: var(--cor-agua-clara); text-decoration: none; transition: color 0.2s; }
+    a:hover, a:focus { color: var(--cor-agua-brilho); }
+    a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+      outline: 2px solid var(--cor-agua-brilho);
+      outline-offset: 2px;
+    }
+
+    /* ===== SKIP LINK ===== */
+    .skip-link {
+      position: absolute; top: -100%; left: 1rem;
+      background: var(--cor-agua-media); color: #fff;
+      padding: 0.5rem 1rem; border-radius: var(--raio);
+      z-index: 9999; font-weight: 700;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* ===== HEADER ===== */
+    header {
+      background-color: rgba(11,26,31,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--cor-borda);
+    }
+    nav {
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 1.5rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .logo { display: flex; align-items: center; gap: 0.6rem; }
+    .logo-icone {
+      width: 38px; height: 38px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--cor-agua-profunda), var(--cor-mistico));
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+      box-shadow: 0 0 16px rgba(77,184,204,0.3);
+    }
+    .logo-texto {
+      font-family: var(--fonte-titulo);
+      font-size: 1.3rem; font-weight: 700;
+      letter-spacing: 0.06em; color: var(--cor-agua-brilho);
+    }
+    .nav-voltar {
+      color: var(--cor-texto-muted); font-size: 0.9rem; font-weight: 600;
+      padding: 0.4rem 0.9rem; border-radius: var(--raio);
+      border: 1px solid var(--cor-borda);
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-voltar:hover { background: rgba(77,184,204,0.08); color: var(--cor-agua-clara); }
+
+    /* ===== LAYOUT PRINCIPAL ===== */
+    main {
+      flex: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      min-height: calc(100vh - 68px);
+    }
+
+    /* ===== PAINEL ESQUERDO (visual) ===== */
+    .painel-visual {
+      position: relative;
+      background: linear-gradient(160deg, #0d1e24 0%, #0a1a20 100%);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: flex-start;
+      padding: 4rem 3.5rem;
+      overflow: hidden;
+    }
+    .painel-visual::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 30%, rgba(26,96,112,0.45) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 10% 80%, rgba(30,74,48,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 60% at 90% 70%, rgba(139,94,158,0.22) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .painel-visual::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle 1.5px at 15% 25%, rgba(77,184,204,0.5) 0%, transparent 100%),
+        radial-gradient(circle 1px at 70% 15%, rgba(77,184,204,0.35) 0%, transparent 100%),
+        radial-gradient(circle 2px at 45% 65%, rgba(139,94,158,0.45) 0%, transparent 100%),
+        radial-gradient(circle 1px at 80% 75%, rgba(77,184,204,0.3) 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 25% 85%, rgba(77,184,204,0.25) 0%, transparent 100%),
+        radial-gradient(circle 1px at 60% 45%, rgba(200,169,110,0.3) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .painel-conteudo { position: relative; max-width: 420px; }
+    .painel-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(77,184,204,0.1); border: 1px solid rgba(77,184,204,0.25);
+      padding: 0.3rem 0.85rem; border-radius: 50px;
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.08em;
+      color: var(--cor-agua-clara); text-transform: uppercase;
+      margin-bottom: 2rem;
+    }
+    .painel-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--cor-agua-brilho); margin-bottom: 1rem;
+    }
+    .painel-titulo em { font-style: normal; color: var(--cor-areia-clara); }
+    .painel-desc {
+      color: var(--cor-texto-muted); font-size: 0.95rem;
+      line-height: 1.8; margin-bottom: 2.5rem;
+    }
+    .painel-beneficios { display: flex; flex-direction: column; gap: 1rem; }
+    .beneficio {
+      display: flex; align-items: flex-start; gap: 0.85rem;
+    }
+    .beneficio-icone {
+      font-size: 1.2rem; flex-shrink: 0; margin-top: 0.1rem;
+    }
+    .beneficio-texto strong {
+      display: block; font-size: 0.9rem; color: var(--cor-texto);
+      margin-bottom: 0.1rem;
+    }
+    .beneficio-texto span { font-size: 0.8rem; color: var(--cor-texto-sutil); }
+    .painel-rodape {
+      position: absolute; bottom: 2rem; left: 3.5rem;
+      font-size: 0.75rem; color: var(--cor-texto-sutil);
+    }
+
+    /* ===== PAINEL DIREITO (formulário) ===== */
+    .painel-form {
+      background: var(--cor-fundo-alt);
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      padding: 3rem 2rem;
+      overflow-y: auto;
+    }
+    .form-container {
+      width: 100%; max-width: 440px;
+    }
+
+    /* Abas Login / Cadastro */
+    .abas {
+      display: flex; background: var(--cor-fundo);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg); padding: 0.35rem;
+      margin-bottom: 2rem; gap: 0.25rem;
+    }
+    .aba-btn {
+      flex: 1; padding: 0.65rem 1rem;
+      border: none; border-radius: 10px;
+      background: transparent; cursor: pointer;
+      font-family: var(--fonte-corpo); font-size: 0.9rem;
+      font-weight: 700; color: var(--cor-texto-sutil);
+      transition: background 0.2s, color 0.2s;
+      letter-spacing: 0.02em;
+    }
+    .aba-btn:hover { color: var(--cor-texto-muted); }
+    .aba-btn.ativa {
+      background: var(--cor-agua-profunda);
+      color: var(--cor-agua-brilho);
+    }
+    .aba-btn:focus-visible {
+      outline: 2px solid var(--cor-agua-brilho);
+      outline-offset: 2px;
+    }
+
+    /* Seções de formulário */
+    .form-secao { display: none; }
+    .form-secao.ativa { display: block; }
+
+    .form-titulo {
+      font-family: var(--fonte-titulo);
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--cor-agua-brilho); margin-bottom: 0.35rem;
+      letter-spacing: 0.03em;
+    }
+    .form-subtitulo {
+      color: var(--cor-texto-muted); font-size: 0.88rem;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Grupo de campo */
+    .campo-grupo {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      margin-bottom: 1.1rem;
+    }
+    .campo-grupo label {
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--cor-texto-muted); letter-spacing: 0.02em;
+    }
+    .campo-grupo label .obrigatorio {
+      color: var(--cor-agua-clara); margin-left: 0.2rem;
+    }
+    .campo-grupo .campo-dica {
+      font-size: 0.75rem; color: var(--cor-texto-sutil);
+      margin-top: 0.2rem;
+    }
+
+    /* Inputs */
+    .input {
+      width: 100%;
+      background: var(--cor-fundo);
+      border: 1.5px solid var(--cor-borda);
+      border-radius: var(--raio);
+      padding: 0.75rem 1rem;
+      color: var(--cor-texto);
+      font-family: var(--fonte-corpo); font-size: 0.95rem;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      appearance: none;
+    }
+    .input::placeholder { color: var(--cor-texto-sutil); }
+    .input:focus {
+      outline: none;
+      border-color: var(--cor-borda-foco);
+      box-shadow: 0 0 0 3px rgba(77,184,204,0.12);
+    }
+    .input:invalid:not(:placeholder-shown) {
+      border-color: var(--cor-erro);
+      box-shadow: 0 0 0 3px var(--cor-erro-bg);
+    }
+    .input:valid:not(:placeholder-shown) {
+      border-color: rgba(74,173,110,0.5);
+    }
+    .input[aria-invalid="true"] {
+      border-color: var(--cor-erro);
+    }
+
+    /* Input com ícone */
+    .input-wrapper {
+      position: relative;
+    }
+    .input-wrapper .input {
+      padding-left: 2.75rem;
+    }
+    .input-icone {
+      position: absolute; left: 0.9rem; top: 50%;
+      transform: translateY(-50%);
+      font-size: 1rem; pointer-events: none;
+      color: var(--cor-texto-sutil);
+    }
+
+    /* Select */
+    select.input {
+      cursor: pointer;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%234d8090' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+    }
+    select.input option { background: #0f2229; color: var(--cor-texto); }
+
+    /* Dois campos lado a lado */
+    .campos-duplos {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    /* Checkbox e radio */
+    .campo-check {
+      display: flex; align-items: flex-start; gap: 0.65rem;
+      margin-bottom: 0.85rem; cursor: pointer;
+    }
+    .campo-check input[type="checkbox"],
+    .campo-check input[type="radio"] {
+      width: 18px; height: 18px; flex-shrink: 0;
+      accent-color: var(--cor-agua-clara);
+      cursor: pointer; margin-top: 0.15rem;
+    }
+    .campo-check .check-label {
+      font-size: 0.85rem; color: var(--cor-texto-muted); line-height: 1.5;
+    }
+    .campo-check .check-label a { color: var(--cor-agua-clara); }
+
+    /* Força da senha */
+    .senha-forca {
+      margin-top: 0.5rem;
+    }
+    .forca-barra {
+      height: 4px; background: var(--cor-borda);
+      border-radius: 2px; overflow: hidden; margin-bottom: 0.3rem;
+    }
+    .forca-preenchimento {
+      height: 100%; border-radius: 2px; width: 0%;
+      transition: width 0.3s, background 0.3s;
+      background: var(--cor-erro);
+    }
+    .forca-texto { font-size: 0.72rem; color: var(--cor-texto-sutil); }
+
+    /* Separador */
+    .separador {
+      display: flex; align-items: center; gap: 1rem;
+      margin: 1.5rem 0; color: var(--cor-texto-sutil); font-size: 0.82rem;
+    }
+    .separador::before, .separador::after {
+      content: ''; flex: 1; height: 1px; background: var(--cor-borda);
+    }
+
+    /* Botão principal */
+    .btn-form {
+      width: 100%; padding: 0.85rem 1.5rem;
+      background: var(--cor-agua-media); color: #fff;
+      border: none; border-radius: var(--raio);
+      font-family: var(--fonte-corpo); font-size: 1rem; font-weight: 700;
+      cursor: pointer; letter-spacing: 0.03em;
+      transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+      box-shadow: 0 4px 20px rgba(42,138,158,0.35);
+      margin-top: 0.5rem;
+    }
+    .btn-form:hover {
+      background: var(--cor-agua-clara); color: #000;
+      box-shadow: 0 6px 28px rgba(77,184,204,0.45);
+    }
+    .btn-form:active { transform: scale(0.98); }
+    .btn-form:focus-visible {
+      outline: 2px solid var(--cor-agua-brilho);
+      outline-offset: 3px;
+    }
+    .btn-form:disabled {
+      opacity: 0.5; cursor: not-allowed;
+      transform: none;
+    }
+
+    /* Mensagem de erro / sucesso */
+    .msg-erro {
+      background: var(--cor-erro-bg);
+      border: 1px solid rgba(224,92,92,0.3);
+      border-radius: var(--raio); padding: 0.75rem 1rem;
+      font-size: 0.85rem; color: #f08080;
+      margin-bottom: 1rem; display: none;
+    }
+    .msg-sucesso {
+      background: var(--cor-sucesso-bg);
+      border: 1px solid rgba(74,173,110,0.3);
+      border-radius: var(--raio); padding: 1rem 1.25rem;
+      font-size: 0.9rem; color: var(--cor-verde-clara);
+      margin-bottom: 1rem; display: none;
+      text-align: center;
+    }
+    .msg-sucesso .sucesso-icone { font-size: 2rem; margin-bottom: 0.5rem; }
+
+    /* Nota de rodapé do form */
+    .form-rodape {
+      text-align: center; margin-top: 1.5rem;
+      font-size: 0.82rem; color: var(--cor-texto-sutil);
+    }
+    .form-rodape a { color: var(--cor-agua-clara); }
+
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 900px) {
+      main { grid-template-columns: 1fr; }
+      .painel-visual { display: none; }
+      .painel-form { padding: 2rem 1.5rem; }
+    }
+    @media (max-width: 480px) {
+      .campos-duplos { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      * { transition: none !important; }
+    }
+  </style>
+</head>
+
+<body>
+  <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
+
+  <!-- ====== CABEÇALHO ====== -->
+  <header>
+    <nav role="navigation" aria-label="Navegação principal">
+      <a href="index.html" class="logo" aria-label="Iara Games - Voltar para a página inicial">
+        <span class="logo-icone" aria-hidden="true">🌊</span>
+        <span class="logo-texto">Iara Games</span>
+      </a>
+      <a href="index.html" class="nav-voltar" aria-label="Voltar para a página inicial">← Voltar</a>
+    </nav>
+  </header>
+
+  <main id="conteudo-principal">
+
+    <!-- ====== PAINEL ESQUERDO ====== -->
+    <aside class="painel-visual" aria-label="Benefícios da Iara Games">
+      <div class="painel-conteudo">
+        <div class="painel-badge">
+          <span aria-hidden="true">🌊</span> Junte-se à comunidade
+        </div>
+        <h1 class="painel-titulo">
+          Sua jornada<br>começa <em>aqui</em>
+        </h1>
+        <p class="painel-desc">
+          Crie sua conta e acesse centenas de jogos, resgate títulos gratuitos mensalmente e conecte-se com a maior comunidade gamer brasileira.
+        </p>
+        <ul class="painel-beneficios" aria-label="Lista de benefícios">
+          <li class="beneficio">
+            <span class="beneficio-icone" aria-hidden="true">🎁</span>
+            <div class="beneficio-texto">
+              <strong>Jogo gratuito todo mês</strong>
+              <span>Resgate e fique com para sempre na sua biblioteca</span>
+            </div>
+          </li>
+          <li class="beneficio">
+            <span class="beneficio-icone" aria-hidden="true">📚</span>
+            <div class="beneficio-texto">
+              <strong>Biblioteca pessoal</strong>
+              <span>Organize e acesse todos os seus jogos em um só lugar</span>
+            </div>
+          </li>
+          <li class="beneficio">
+            <span class="beneficio-icone" aria-hidden="true">🌱</span>
+            <div class="beneficio-texto">
+              <strong>Apoie devs brasileiros</strong>
+              <span>Cada compra fortalece a indústria nacional de games</span>
+            </div>
+          </li>
+          <li class="beneficio">
+            <span class="beneficio-icone" aria-hidden="true">🔒</span>
+            <div class="beneficio-texto">
+              <strong>Privacidade garantida</strong>
+              <span>Seus dados protegidos de acordo com a LGPD</span>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <p class="painel-rodape">🌊 Iara Games · Feito com 💙 no Brasil</p>
+    </aside>
+
+    <!-- ====== PAINEL FORMULÁRIO ====== -->
+    <section class="painel-form" aria-label="Formulários de acesso">
+      <div class="form-container" role="main">
+
+        <!-- Abas de navegação entre login e cadastro -->
+        <div class="abas" role="tablist" aria-label="Escolha entre entrar ou criar conta">
+          <button
+            class="aba-btn ativa"
+            id="aba-login-btn"
+            role="tab"
+            aria-selected="true"
+            aria-controls="form-login"
+            onclick="trocarAba('login')"
+          >Entrar</button>
+          <button
+            class="aba-btn"
+            id="aba-cadastro-btn"
+            role="tab"
+            aria-selected="false"
+            aria-controls="form-cadastro"
+            onclick="trocarAba('cadastro')"
+          >Criar conta</button>
+        </div>
+
+        <!-- ====== FORMULÁRIO DE LOGIN ====== -->
+        <div
+          id="form-login"
+          class="form-secao ativa"
+          role="tabpanel"
+          aria-labelledby="aba-login-btn"
+        >
+          <h2 class="form-titulo">Bem-vindo(a) de volta</h2>
+          <p class="form-subtitulo">Entre com seus dados para acessar sua conta</p>
+
+          <div id="erro-login" class="msg-erro" role="alert" aria-live="assertive"></div>
+          <div id="sucesso-login" class="msg-sucesso" role="status" aria-live="polite"></div>
+
+          <form
+            id="formulario-login"
+            novalidate
+            aria-label="Formulário de login"
+            onsubmit="handleLogin(event)"
+          >
+            <!-- E-mail -->
+            <div class="campo-grupo">
+              <label for="login-email">
+                E-mail <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icone" aria-hidden="true">📧</span>
+                <input
+                  type="email"
+                  id="login-email"
+                  name="email"
+                  class="input"
+                  placeholder="seuemail@exemplo.com"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                  aria-describedby="login-email-dica"
+                />
+              </div>
+              <span id="login-email-dica" class="campo-dica">Use o e-mail com o qual se cadastrou</span>
+            </div>
+
+            <!-- Senha -->
+            <div class="campo-grupo">
+              <label for="login-senha">
+                Senha <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icone" aria-hidden="true">🔒</span>
+                <input
+                  type="password"
+                  id="login-senha"
+                  name="senha"
+                  class="input"
+                  placeholder="Sua senha"
+                  autocomplete="current-password"
+                  required
+                  aria-required="true"
+                  minlength="6"
+                />
+              </div>
+            </div>
+
+            <!-- Lembrar + esqueci -->
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1.25rem; flex-wrap:wrap; gap:0.5rem;">
+              <label class="campo-check" style="margin-bottom:0;">
+                <input type="checkbox" name="lembrar" id="login-lembrar" />
+                <span class="check-label">Lembrar de mim</span>
+              </label>
+              <a href="#" style="font-size:0.82rem;" aria-label="Esqueci minha senha — recuperar acesso">Esqueci a senha</a>
+            </div>
+
+            <button type="submit" class="btn-form" aria-label="Entrar na minha conta">
+              Entrar na minha conta
+            </button>
+          </form>
+
+          <div class="separador" aria-hidden="true">ou</div>
+
+          <p style="text-align:center; font-size:0.85rem; color:var(--cor-texto-muted);">
+            Não tem conta ainda?
+            <button
+              onclick="trocarAba('cadastro')"
+              style="background:none;border:none;cursor:pointer;color:var(--cor-agua-clara);font-weight:700;font-size:0.85rem;font-family:inherit;padding:0;"
+              aria-label="Ir para o formulário de cadastro"
+            >Criar conta grátis →</button>
+          </p>
+        </div>
+
+        <!-- ====== FORMULÁRIO DE CADASTRO ====== -->
+        <div
+          id="form-cadastro"
+          class="form-secao"
+          role="tabpanel"
+          aria-labelledby="aba-cadastro-btn"
+        >
+          <h2 class="form-titulo">Crie sua conta</h2>
+          <p class="form-subtitulo">Preencha os dados abaixo — é gratuito!</p>
+
+          <div id="erro-cadastro" class="msg-erro" role="alert" aria-live="assertive"></div>
+          <div id="sucesso-cadastro" class="msg-sucesso" role="status" aria-live="polite"></div>
+
+          <form
+            id="formulario-cadastro"
+            novalidate
+            aria-label="Formulário de cadastro"
+            onsubmit="handleCadastro(event)"
+          >
+            <!-- Nome e sobrenome -->
+            <div class="campos-duplos">
+              <div class="campo-grupo">
+                <label for="cad-nome">
+                  Nome <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="cad-nome"
+                  name="nome"
+                  class="input"
+                  placeholder="Seu nome"
+                  autocomplete="given-name"
+                  required
+                  aria-required="true"
+                  minlength="2"
+                />
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-sobrenome">
+                  Sobrenome <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="cad-sobrenome"
+                  name="sobrenome"
+                  class="input"
+                  placeholder="Seu sobrenome"
+                  autocomplete="family-name"
+                  required
+                  aria-required="true"
+                  minlength="2"
+                />
+              </div>
+            </div>
+
+            <!-- Apelido (nick) -->
+            <div class="campo-grupo">
+              <label for="cad-nick">
+                Nome de jogador (nick) <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icone" aria-hidden="true">🎮</span>
+                <input
+                  type="text"
+                  id="cad-nick"
+                  name="nick"
+                  class="input"
+                  placeholder="Como quer ser chamado(a)?"
+                  autocomplete="nickname"
+                  required
+                  aria-required="true"
+                  minlength="3"
+                  maxlength="20"
+                  pattern="[A-Za-z0-9_\-]+"
+                  aria-describedby="cad-nick-dica"
+                />
+              </div>
+              <span id="cad-nick-dica" class="campo-dica">Letras, números, _ e - · De 3 a 20 caracteres</span>
+            </div>
+
+            <!-- E-mail -->
+            <div class="campo-grupo">
+              <label for="cad-email">
+                E-mail <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icone" aria-hidden="true">📧</span>
+                <input
+                  type="email"
+                  id="cad-email"
+                  name="email"
+                  class="input"
+                  placeholder="seuemail@exemplo.com"
+                  autocomplete="email"
+                  required
+                  aria-required="true"
+                />
+              </div>
+            </div>
+
+            <!-- Data de nascimento + gênero -->
+            <div class="campos-duplos">
+              <div class="campo-grupo">
+                <label for="cad-nascimento">
+                  Data de nascimento <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+                </label>
+                <input
+                  type="date"
+                  id="cad-nascimento"
+                  name="nascimento"
+                  class="input"
+                  required
+                  aria-required="true"
+                  aria-describedby="cad-nascimento-dica"
+                  max="2007-12-31"
+                  min="1900-01-01"
+                />
+                <span id="cad-nascimento-dica" class="campo-dica">Você deve ter 18+ anos</span>
+              </div>
+              <div class="campo-grupo">
+                <label for="cad-genero">Como se identifica</label>
+                <select id="cad-genero" name="genero" class="input" autocomplete="sex">
+                  <option value="" disabled selected>Selecione</option>
+                  <option value="feminino">Feminino</option>
+                  <option value="masculino">Masculino</option>
+                  <option value="nao-binario">Não binário</option>
+                  <option value="outro">Outro</option>
+                  <option value="prefiro-nao-dizer">Prefiro não dizer</option>
+                </select>
+              </div>
+            </div>
+
+            <!-- Senha -->
+            <div class="campo-grupo">
+              <label for="cad-senha">
+                Senha <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icone" aria-hidden="true">🔒</span>
+                <input
+                  type="password"
+                  id="cad-senha"
+                  name="senha"
+                  class="input"
+                  placeholder="Mínimo 8 caracteres"
+                  autocomplete="new-password"
+                  required
+                  aria-required="true"
+                  minlength="8"
+                  aria-describedby="cad-senha-dica forca-texto"
+                  oninput="calcularForca(this.value)"
+                />
+              </div>
+              <span id="cad-senha-dica" class="campo-dica">Use letras, números e símbolos para maior segurança</span>
+              <div class="senha-forca" aria-live="polite">
+                <div class="forca-barra" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="Força da senha">
+                  <div class="forca-preenchimento" id="forca-barra"></div>
+                </div>
+                <span class="forca-texto" id="forca-texto">Digite uma senha</span>
+              </div>
+            </div>
+
+            <!-- Confirmar senha -->
+            <div class="campo-grupo">
+              <label for="cad-confirmar-senha">
+                Confirmar senha <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+              <div class="input-wrapper">
+                <span class="input-icone" aria-hidden="true">🔒</span>
+                <input
+                  type="password"
+                  id="cad-confirmar-senha"
+                  name="confirmar-senha"
+                  class="input"
+                  placeholder="Repita a senha"
+                  autocomplete="new-password"
+                  required
+                  aria-required="true"
+                />
+              </div>
+            </div>
+
+            <!-- Preferências de jogos -->
+            <fieldset style="border:none; margin-bottom:1.1rem;">
+              <legend style="font-size:0.85rem;font-weight:700;color:var(--cor-texto-muted);margin-bottom:0.6rem;letter-spacing:0.02em;">
+                Gêneros favoritos (opcional)
+              </legend>
+              <div style="display:grid;grid-template-columns:1fr 1fr;gap:0.4rem;">
+                <label class="campo-check">
+                  <input type="checkbox" name="genero-jogo" value="rpg" />
+                  <span class="check-label">🧙 RPG</span>
+                </label>
+                <label class="campo-check">
+                  <input type="checkbox" name="genero-jogo" value="acao" />
+                  <span class="check-label">⚔️ Ação</span>
+                </label>
+                <label class="campo-check">
+                  <input type="checkbox" name="genero-jogo" value="aventura" />
+                  <span class="check-label">🗺️ Aventura</span>
+                </label>
+                <label class="campo-check">
+                  <input type="checkbox" name="genero-jogo" value="indie" />
+                  <span class="check-label">💎 Indie</span>
+                </label>
+                <label class="campo-check">
+                  <input type="checkbox" name="genero-jogo" value="estrategia" />
+                  <span class="check-label">♟️ Estratégia</span>
+                </label>
+                <label class="campo-check">
+                  <input type="checkbox" name="genero-jogo" value="puzzle" />
+                  <span class="check-label">🧩 Puzzle</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <!-- Newsletter -->
+            <label class="campo-check">
+              <input type="checkbox" name="newsletter" id="cad-newsletter" checked />
+              <span class="check-label">Quero receber novidades, promoções e o jogo gratuito do mês por e-mail</span>
+            </label>
+
+            <!-- Termos -->
+            <label class="campo-check" style="margin-bottom:1.25rem;">
+              <input
+                type="checkbox"
+                name="termos"
+                id="cad-termos"
+                required
+                aria-required="true"
+                aria-describedby="cad-termos-dica"
+              />
+              <span class="check-label">
+                Li e concordo com os <a href="#" aria-label="Ler termos de uso">Termos de Uso</a> e a
+                <a href="#" aria-label="Ler política de privacidade">Política de Privacidade</a>
+                <span class="obrigatorio">*</span>
+              </span>
+            </label>
+            <span id="cad-termos-dica" style="display:none;font-size:0.75rem;color:var(--cor-erro);">Você precisa aceitar os termos para continuar.</span>
+
+            <button type="submit" class="btn-form" aria-label="Criar minha conta gratuitamente">
+              Criar minha conta grátis 🌊
+            </button>
+
+            <p style="text-align:center;font-size:0.72rem;color:var(--cor-texto-sutil);margin-top:0.85rem;line-height:1.5;">
+              Seus dados estão protegidos pela LGPD. Nunca compartilharemos suas informações com terceiros sem seu consentimento.
+            </p>
+          </form>
+
+          <p class="form-rodape">
+            Já tem conta?
+            <button
+              onclick="trocarAba('login')"
+              style="background:none;border:none;cursor:pointer;color:var(--cor-agua-clara);font-weight:700;font-size:0.82rem;font-family:inherit;padding:0;"
+              aria-label="Ir para o formulário de login"
+            >Entrar →</button>
+          </p>
+        </div>
+
+      </div>
+    </section>
+  </main>
+
+  <script>
+    /* ===== TROCA DE ABAS ===== */
+    function trocarAba(qual) {
+      const btnLogin    = document.getElementById('aba-login-btn');
+      const btnCadastro = document.getElementById('aba-cadastro-btn');
+      const secLogin    = document.getElementById('form-login');
+      const secCadastro = document.getElementById('form-cadastro');
+
+      if (qual === 'login') {
+        btnLogin.classList.add('ativa');    btnLogin.setAttribute('aria-selected','true');
+        btnCadastro.classList.remove('ativa'); btnCadastro.setAttribute('aria-selected','false');
+        secLogin.classList.add('ativa');    secCadastro.classList.remove('ativa');
+        btnLogin.focus();
+      } else {
+        btnCadastro.classList.add('ativa'); btnCadastro.setAttribute('aria-selected','true');
+        btnLogin.classList.remove('ativa'); btnLogin.setAttribute('aria-selected','false');
+        secCadastro.classList.add('ativa'); secLogin.classList.remove('ativa');
+        btnCadastro.focus();
+      }
+    }
+
+    /* ===== FORÇA DA SENHA ===== */
+    function calcularForca(senha) {
+      let pontos = 0;
+      if (senha.length >= 8)  pontos++;
+      if (senha.length >= 12) pontos++;
+      if (/[A-Z]/.test(senha)) pontos++;
+      if (/[0-9]/.test(senha)) pontos++;
+      if (/[^A-Za-z0-9]/.test(senha)) pontos++;
+
+      const barra  = document.getElementById('forca-barra');
+      const texto  = document.getElementById('forca-texto');
+      const pb     = barra.parentElement;
+
+      const niveis = [
+        { pct: 0,   cor: 'var(--cor-borda)',    msg: 'Digite uma senha' },
+        { pct: 20,  cor: 'var(--cor-erro)',      msg: 'Muito fraca' },
+        { pct: 40,  cor: '#e0983a',              msg: 'Fraca' },
+        { pct: 60,  cor: 'var(--cor-areia)',     msg: 'Média' },
+        { pct: 80,  cor: 'var(--cor-agua-media)',msg: 'Boa' },
+        { pct: 100, cor: 'var(--cor-verde-clara)',msg: 'Muito forte' },
+      ];
+
+      const n = senha.length === 0 ? 0 : Math.min(pontos + 1, 5);
+      barra.style.width      = niveis[n].pct + '%';
+      barra.style.background = niveis[n].cor;
+      texto.textContent      = niveis[n].msg;
+      pb.setAttribute('aria-valuenow', niveis[n].pct);
+    }
+
+    /* ===== VALIDAÇÃO E SUBMIT — LOGIN ===== */
+    function handleLogin(e) {
+      e.preventDefault();
+      const erroDiv   = document.getElementById('erro-login');
+      const sucessoDiv = document.getElementById('sucesso-login');
+      const email  = document.getElementById('login-email').value.trim();
+      const senha  = document.getElementById('login-senha').value;
+
+      erroDiv.style.display   = 'none';
+      sucessoDiv.style.display = 'none';
+
+      if (!email) {
+        mostrarErro(erroDiv, '⚠️ Por favor, informe seu e-mail.');
+        document.getElementById('login-email').focus();
+        return;
+      }
+      if (!email.includes('@')) {
+        mostrarErro(erroDiv, '⚠️ Informe um e-mail válido.');
+        document.getElementById('login-email').setAttribute('aria-invalid','true');
+        document.getElementById('login-email').focus();
+        return;
+      }
+      if (senha.length < 6) {
+        mostrarErro(erroDiv, '⚠️ A senha deve ter pelo menos 6 caracteres.');
+        document.getElementById('login-senha').focus();
+        return;
+      }
+
+      // Simulação de login (sem back-end)
+      sucessoDiv.innerHTML = '<div class="sucesso-icone">🌊</div><strong>Login realizado!</strong><br>Bem-vindo(a) de volta à Iara Games. Redirecionando…';
+      sucessoDiv.style.display = 'block';
+      document.getElementById('formulario-login').reset();
+    }
+
+    /* ===== VALIDAÇÃO E SUBMIT — CADASTRO ===== */
+    function handleCadastro(e) {
+      e.preventDefault();
+      const erroDiv    = document.getElementById('erro-cadastro');
+      const sucessoDiv = document.getElementById('sucesso-cadastro');
+
+      erroDiv.style.display    = 'none';
+      sucessoDiv.style.display = 'none';
+
+      const nome      = document.getElementById('cad-nome').value.trim();
+      const sobrenome = document.getElementById('cad-sobrenome').value.trim();
+      const nick      = document.getElementById('cad-nick').value.trim();
+      const email     = document.getElementById('cad-email').value.trim();
+      const nasc      = document.getElementById('cad-nascimento').value;
+      const senha     = document.getElementById('cad-senha').value;
+      const confirmar = document.getElementById('cad-confirmar-senha').value;
+      const termos    = document.getElementById('cad-termos').checked;
+
+      if (!nome || nome.length < 2) {
+        mostrarErro(erroDiv, '⚠️ Informe seu nome (mínimo 2 caracteres).');
+        document.getElementById('cad-nome').focus(); return;
+      }
+      if (!nick || nick.length < 3) {
+        mostrarErro(erroDiv, '⚠️ O nome de jogador deve ter pelo menos 3 caracteres.');
+        document.getElementById('cad-nick').focus(); return;
+      }
+      if (!/^[A-Za-z0-9_\-]+$/.test(nick)) {
+        mostrarErro(erroDiv, '⚠️ O nick só pode ter letras, números, _ e -.');
+        document.getElementById('cad-nick').setAttribute('aria-invalid','true');
+        document.getElementById('cad-nick').focus(); return;
+      }
+      if (!email || !email.includes('@')) {
+        mostrarErro(erroDiv, '⚠️ Informe um e-mail válido.');
+        document.getElementById('cad-email').setAttribute('aria-invalid','true');
+        document.getElementById('cad-email').focus(); return;
+      }
+      if (!nasc) {
+        mostrarErro(erroDiv, '⚠️ Informe sua data de nascimento.');
+        document.getElementById('cad-nascimento').focus(); return;
+      }
+      const idade = calcularIdade(nasc);
+      if (idade < 18) {
+        mostrarErro(erroDiv, '⚠️ Você deve ter 18 anos ou mais para criar uma conta.');
+        document.getElementById('cad-nascimento').setAttribute('aria-invalid','true');
+        document.getElementById('cad-nascimento').focus(); return;
+      }
+      if (senha.length < 8) {
+        mostrarErro(erroDiv, '⚠️ A senha deve ter pelo menos 8 caracteres.');
+        document.getElementById('cad-senha').focus(); return;
+      }
+      if (senha !== confirmar) {
+        mostrarErro(erroDiv, '⚠️ As senhas não coincidem. Verifique e tente novamente.');
+        document.getElementById('cad-confirmar-senha').setAttribute('aria-invalid','true');
+        document.getElementById('cad-confirmar-senha').focus(); return;
+      }
+      if (!termos) {
+        mostrarErro(erroDiv, '⚠️ Você precisa aceitar os Termos de Uso para continuar.');
+        document.getElementById('cad-termos-dica').style.display = 'block';
+        document.getElementById('cad-termos').focus(); return;
+      }
+
+      // Sucesso
+      sucessoDiv.innerHTML = `
+        <div class="sucesso-icone">🎉</div>
+        <strong>Conta criada com sucesso!</strong><br>
+        Bem-vindo(a), <strong>${nick}</strong>! Sua jornada na Iara Games começa agora. 🌊
+      `;
+      sucessoDiv.style.display = 'block';
+      document.getElementById('formulario-cadastro').reset();
+      calcularForca('');
+    }
+
+    function mostrarErro(div, msg) {
+      div.textContent    = msg;
+      div.style.display  = 'block';
+      div.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    function calcularIdade(dataNasc) {
+      const hoje   = new Date();
+      const nasc   = new Date(dataNasc);
+      let idade    = hoje.getFullYear() - nasc.getFullYear();
+      const m      = hoje.getMonth() - nasc.getMonth();
+      if (m < 0 || (m === 0 && hoje.getDate() < nasc.getDate())) idade--;
+      return idade;
+    }
+  </script>
+</body>
+</html>

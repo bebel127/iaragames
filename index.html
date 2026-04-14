@@ -3,59 +3,53 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Iara Games — Plataforma de distribuição de games. Descubra, explore e jogue." />
+  <meta name="description" content="Iara Games — Plataforma brasileira de distribuição de games. Descubra, explore e jogue." />
   <title>Iara Games</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet" />
   <style>
- 
-
+    /* ===== VARIÁVEIS ===== */
     :root {
-      --cor-fundo:        #0b1a1f;
-      --cor-fundo-alt:    #0f2229;
-      --cor-card:         #112830;
-      --cor-borda:        #1e4a54;
+      --cor-fundo:         #0b1a1f;
+      --cor-fundo-alt:     #0f2229;
+      --cor-card:          #112830;
+      --cor-card-hover:    #163340;
+      --cor-borda:         #1e4a54;
+      --cor-borda-clara:   #2a6070;
 
-      --cor-agua-profunda:#1a6070;
-      --cor-agua-media:   #2a8a9e;
-      --cor-agua-clara:   #4db8cc;
-      --cor-agua-brilho:  #7de0ef;
+      --cor-agua-profunda: #1a6070;
+      --cor-agua-media:    #2a8a9e;
+      --cor-agua-clara:    #4db8cc;
+      --cor-agua-brilho:   #7de0ef;
 
-      --cor-floresta:     #1e4a30;
-      --cor-folha:        #2d7a4a;
-      --cor-folha-clara:  #4aad6e;
+      --cor-mistico:       #8b5e9e;
+      --cor-mistico-clara: #b388c8;
 
-      --cor-mistico:      #8b5e9e;
-      --cor-mistico-clara:#b388c8;
+      --cor-areia:         #c8a96e;
+      --cor-areia-clara:   #e0c898;
 
-      --cor-areia:        #c8a96e;
-      --cor-areia-clara:  #e0c898;
+      --cor-verde:         #2d7a4a;
+      --cor-verde-clara:   #4aad6e;
 
-      --cor-texto:        #d8eef2;
-      --cor-texto-muted:  #8ab8c2;
-      --cor-texto-sutil:  #4d8090;
+      --cor-texto:         #d8eef2;
+      --cor-texto-muted:   #8ab8c2;
+      --cor-texto-sutil:   #4d8090;
 
-      --fonte-titulo:     'Cinzel', serif;
-      --fonte-corpo:      'Nunito', sans-serif;
+      --fonte-titulo:      'Cinzel', serif;
+      --fonte-corpo:       'Nunito', sans-serif;
 
-      --raio:             8px;
-      --raio-lg:          16px;
-      --sombra:           0 4px 24px rgba(0,0,0,0.45);
-      --sombra-agua:      0 0 32px rgba(77,184,204,0.12);
+      --raio:              8px;
+      --raio-lg:           16px;
+      --raio-xl:           24px;
+      --sombra:            0 4px 24px rgba(0,0,0,0.45);
+      --sombra-agua:       0 0 40px rgba(77,184,204,0.12);
+      --sombra-hover:      0 8px 40px rgba(77,184,204,0.22);
     }
 
- 
-    *, *::before, *::after {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
-
+    /* ===== RESET ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
     body {
       background-color: var(--cor-fundo);
       color: var(--cor-texto);
@@ -63,760 +57,713 @@
       font-size: 16px;
       line-height: 1.7;
       min-height: 100vh;
+      overflow-x: hidden;
     }
-
-    img {
-      max-width: 100%;
-      display: block;
-      /* Acessibilidade: alt obrigatório em todas as imagens no HTML */
-    }
-
-    a {
-      color: var(--cor-agua-clara);
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-
-    a:hover,
-    a:focus {
-      color: var(--cor-agua-brilho);
-    }
-
-    /* Foco visível para navegação por teclado */
-    a:focus-visible,
-    button:focus-visible {
+    img { max-width: 100%; display: block; }
+    a { color: var(--cor-agua-clara); text-decoration: none; transition: color 0.2s; }
+    a:hover, a:focus { color: var(--cor-agua-brilho); }
+    a:focus-visible, button:focus-visible {
       outline: 2px solid var(--cor-agua-brilho);
       outline-offset: 3px;
       border-radius: 3px;
     }
 
+    /* ===== SKIP LINK ===== */
     .skip-link {
-      position: absolute;
-      top: -100%;
-      left: 1rem;
-      background: var(--cor-agua-media);
-      color: #fff;
-      padding: 0.5rem 1rem;
-      border-radius: var(--raio);
-      z-index: 9999;
-      font-weight: 700;
-      font-family: var(--fonte-corpo);
+      position: absolute; top: -100%; left: 1rem;
+      background: var(--cor-agua-media); color: #fff;
+      padding: 0.5rem 1rem; border-radius: var(--raio);
+      z-index: 9999; font-weight: 700;
     }
+    .skip-link:focus { top: 1rem; }
 
-    .skip-link:focus {
-      top: 1rem;
-    }
-
+    /* ===== HEADER ===== */
     header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background-color: rgba(11, 26, 31, 0.92);
-      backdrop-filter: blur(10px);
+      position: sticky; top: 0; z-index: 100;
+      background-color: rgba(11,26,31,0.95);
+      backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--cor-borda);
     }
-
     nav {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-      height: 64px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+      max-width: 1200px; margin: 0 auto;
+      padding: 0 1.5rem; height: 68px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-
     .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
+      display: flex; align-items: center; gap: 0.6rem;
     }
-
     .logo-icone {
-      width: 36px;
-      height: 36px;
-      border-radius: 50%;
+      width: 38px; height: 38px; border-radius: 50%;
       background: linear-gradient(135deg, var(--cor-agua-profunda), var(--cor-mistico));
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 18px;
-      flex-shrink: 0;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+      box-shadow: 0 0 16px rgba(77,184,204,0.3);
     }
-
     .logo-texto {
       font-family: var(--fonte-titulo);
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.05em;
-      color: var(--cor-agua-brilho);
+      font-size: 1.3rem; font-weight: 700;
+      letter-spacing: 0.06em; color: var(--cor-agua-brilho);
     }
-
     .nav-links {
-      display: flex;
-      list-style: none;
-      gap: 0.25rem;
-      align-items: center;
+      display: flex; list-style: none;
+      gap: 0.25rem; align-items: center;
     }
-
     .nav-links a {
-      color: var(--cor-texto-muted);
-      font-size: 0.9rem;
-      font-weight: 600;
-      padding: 0.4rem 0.9rem;
-      border-radius: var(--raio);
-      transition: background 0.2s, color 0.2s;
-      letter-spacing: 0.02em;
+      color: var(--cor-texto-muted); font-size: 0.9rem; font-weight: 600;
+      padding: 0.4rem 0.9rem; border-radius: var(--raio);
+      transition: background 0.2s, color 0.2s; letter-spacing: 0.02em;
     }
-
-    .nav-links a:hover,
-    .nav-links a:focus {
-      background: rgba(77,184,204,0.1);
-      color: var(--cor-agua-clara);
+    .nav-links a:hover, .nav-links a:focus {
+      background: rgba(77,184,204,0.1); color: var(--cor-agua-clara);
     }
-
     .btn-nav {
-      background: var(--cor-agua-profunda);
+      background: rgba(77,184,204,0.12) !important;
       color: var(--cor-agua-brilho) !important;
-      border: 1px solid var(--cor-agua-media);
+      border: 1px solid var(--cor-agua-media) !important;
     }
-
-    .btn-nav:hover,
-    .btn-nav:focus {
+    .btn-nav:hover, .btn-nav:focus {
       background: var(--cor-agua-media) !important;
       color: #fff !important;
     }
 
-  
-    .hero {
-      position: relative;
-      min-height: 88vh;
-      display: flex;
-      align-items: center;
-      overflow: hidden;
-      padding: 4rem 1.5rem;
-    }
-
-
-    .hero::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,96,112,0.35) 0%, transparent 60%),
-        radial-gradient(ellipse 50% 40% at 20% 80%, rgba(30,74,48,0.25) 0%, transparent 55%),
-        radial-gradient(ellipse 40% 50% at 85% 70%, rgba(139,94,158,0.18) 0%, transparent 50%);
-      pointer-events: none;
-    }
-
-    .hero-conteudo {
-      position: relative;
-      max-width: 1200px;
-      margin: 0 auto;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4rem;
-      align-items: center;
-    }
-
-    .hero-texto h1 {
-      font-family: var(--fonte-titulo);
-      font-size: clamp(2.2rem, 5vw, 4rem);
-      font-weight: 900;
-      line-height: 1.1;
-      letter-spacing: 0.02em;
-      color: var(--cor-agua-brilho);
-      margin-bottom: 0.4rem;
-    }
-
-    .hero-subtitulo {
-      font-family: var(--fonte-titulo);
-      font-size: clamp(1rem, 2vw, 1.3rem);
-      color: var(--cor-areia-clara);
-      letter-spacing: 0.1em;
-      font-weight: 400;
-      margin-bottom: 1.5rem;
-      text-transform: uppercase;
-    }
-
-    .hero-desc {
-      color: var(--cor-texto-muted);
-      font-size: 1.05rem;
-      max-width: 480px;
-      margin-bottom: 2.5rem;
-      line-height: 1.8;
-    }
-
-    .hero-acoes {
-      display: flex;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-
+    /* ===== BOTÕES ===== */
     .btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.75rem 1.75rem;
-      border-radius: var(--raio);
-      font-family: var(--fonte-corpo);
-      font-size: 0.95rem;
-      font-weight: 700;
-      cursor: pointer;
-      border: none;
-      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
-      letter-spacing: 0.03em;
-      text-decoration: none;
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      padding: 0.8rem 1.9rem; border-radius: var(--raio);
+      font-family: var(--fonte-corpo); font-size: 0.95rem;
+      font-weight: 700; cursor: pointer; border: none;
+      transition: transform 0.15s, box-shadow 0.2s, background 0.2s;
+      letter-spacing: 0.03em; text-decoration: none;
     }
-
-    .btn:active {
-      transform: scale(0.97);
-    }
-
+    .btn:active { transform: scale(0.97); }
     .btn-primario {
-      background: var(--cor-agua-media);
-      color: #fff;
+      background: var(--cor-agua-media); color: #fff;
       box-shadow: 0 4px 20px rgba(42,138,158,0.4);
     }
-
-    .btn-primario:hover,
-    .btn-primario:focus {
-      background: var(--cor-agua-clara);
-      color: var(--cor-fundo);
-      box-shadow: 0 6px 28px rgba(77,184,204,0.5);
+    .btn-primario:hover, .btn-primario:focus {
+      background: var(--cor-agua-clara); color: var(--cor-fundo);
+      box-shadow: 0 6px 32px rgba(77,184,204,0.5); color: #000;
     }
-
     .btn-secundario {
-      background: transparent;
-      color: var(--cor-agua-brilho);
+      background: transparent; color: var(--cor-agua-brilho);
       border: 1.5px solid var(--cor-agua-media);
     }
-
-    .btn-secundario:hover,
-    .btn-secundario:focus {
+    .btn-secundario:hover, .btn-secundario:focus {
       background: rgba(77,184,204,0.1);
     }
-
-    .hero-visual {
-      display: flex;
-      justify-content: center;
-      align-items: center;
+    .btn-mistico {
+      background: rgba(139,94,158,0.2); color: var(--cor-mistico-clara);
+      border: 1px solid rgba(139,94,158,0.5);
+    }
+    .btn-mistico:hover {
+      background: rgba(139,94,158,0.35);
     }
 
-    .card-destaque {
-      background: var(--cor-card);
-      border: 1px solid var(--cor-borda);
-      border-radius: var(--raio-lg);
-      padding: 1.5rem;
-      width: 100%;
-      max-width: 380px;
-      box-shadow: var(--sombra), var(--sombra-agua);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-destaque::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--cor-agua-profunda), var(--cor-mistico), var(--cor-agua-clara));
-    }
-
-    .card-capa {
-      width: 100%;
-      height: 180px;
-      background: linear-gradient(135deg, #0f2a35 0%, #1a4050 40%, #0d2030 100%);
-      border-radius: var(--raio);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 4rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card-capa::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      height: 60px;
-      background: linear-gradient(transparent, rgba(10,25,30,0.8));
-    }
-
-    .card-tag {
-      display: inline-block;
-      background: rgba(77,184,204,0.15);
-      color: var(--cor-agua-clara);
-      border: 1px solid rgba(77,184,204,0.3);
-      padding: 0.2rem 0.6rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      margin-bottom: 0.6rem;
-    }
-
-    .card-titulo {
-      font-family: var(--fonte-titulo);
-      font-size: 1.15rem;
-      color: var(--cor-texto);
-      margin-bottom: 0.4rem;
-    }
-
-    .card-preco {
-      font-size: 1.3rem;
-      font-weight: 700;
-      color: var(--cor-areia-clara);
-    }
-
-    .card-preco .de {
-      font-size: 0.85rem;
-      color: var(--cor-texto-sutil);
-      text-decoration: line-through;
-      margin-right: 0.4rem;
-      font-weight: 400;
-    }
-
-  
-    section {
-      padding: 5rem 1.5rem;
-    }
-
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-
+    /* ===== LAYOUT GERAL ===== */
+    section { padding: 5rem 1.5rem; }
+    .container { max-width: 1200px; margin: 0 auto; }
     .secao-titulo {
       font-family: var(--fonte-titulo);
       font-size: clamp(1.5rem, 3vw, 2.2rem);
-      color: var(--cor-agua-brilho);
-      margin-bottom: 0.5rem;
+      color: var(--cor-agua-brilho); margin-bottom: 0.5rem;
       letter-spacing: 0.03em;
     }
-
-    .secao-subtitulo {
-      color: var(--cor-texto-muted);
-      font-size: 1rem;
-      margin-bottom: 2.5rem;
-    }
-
+    .secao-subtitulo { color: var(--cor-texto-muted); font-size: 1rem; margin-bottom: 2.5rem; }
     .secao-header {
-      display: flex;
-      align-items: flex-end;
+      display: flex; align-items: flex-end;
       justify-content: space-between;
-      margin-bottom: 2rem;
-      gap: 1rem;
-      flex-wrap: wrap;
+      margin-bottom: 2rem; gap: 1rem; flex-wrap: wrap;
     }
-
     .ver-todos {
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--cor-agua-media);
-      white-space: nowrap;
+      font-size: 0.9rem; font-weight: 600;
+      color: var(--cor-agua-media); white-space: nowrap;
+    }
+    .ver-todos:hover { color: var(--cor-agua-brilho); }
+
+    /* ===== HERO ===== */
+    .hero {
+      position: relative; min-height: 90vh;
+      display: flex; align-items: center;
+      overflow: hidden; padding: 5rem 1.5rem;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 60% 40%, rgba(26,96,112,0.4) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 15% 85%, rgba(30,74,48,0.3) 0%, transparent 55%),
+        radial-gradient(ellipse 40% 50% at 90% 65%, rgba(139,94,158,0.2) 0%, transparent 50%),
+        radial-gradient(ellipse 30% 30% at 50% 10%, rgba(77,184,204,0.08) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    /* partículas decorativas */
+    .hero::after {
+      content: '';
+      position: absolute; inset: 0;
+      background-image:
+        radial-gradient(circle 1px at 20% 30%, rgba(77,184,204,0.4) 0%, transparent 100%),
+        radial-gradient(circle 1px at 75% 20%, rgba(77,184,204,0.3) 0%, transparent 100%),
+        radial-gradient(circle 1.5px at 40% 70%, rgba(139,94,158,0.4) 0%, transparent 100%),
+        radial-gradient(circle 1px at 85% 60%, rgba(77,184,204,0.25) 0%, transparent 100%),
+        radial-gradient(circle 1px at 10% 60%, rgba(77,184,204,0.2) 0%, transparent 100%);
+      pointer-events: none;
+    }
+    .hero-conteudo {
+      position: relative; max-width: 1200px; margin: 0 auto; width: 100%;
+      display: grid; grid-template-columns: 1.1fr 0.9fr;
+      gap: 4rem; align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(77,184,204,0.08); border: 1px solid rgba(77,184,204,0.25);
+      padding: 0.35rem 0.9rem; border-radius: 50px;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.07em;
+      color: var(--cor-agua-clara); text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+    .hero-badge span { font-size: 0.9rem; }
+    .hero-texto h1 {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(2.4rem, 5vw, 4.2rem);
+      font-weight: 900; line-height: 1.08; letter-spacing: 0.02em;
+      color: var(--cor-agua-brilho); margin-bottom: 0.5rem;
+    }
+    .hero-texto h1 em {
+      font-style: normal;
+      color: var(--cor-areia-clara);
+    }
+    .hero-desc {
+      color: var(--cor-texto-muted); font-size: 1.05rem;
+      max-width: 500px; margin-bottom: 2.5rem; line-height: 1.85;
+    }
+    .hero-acoes { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats {
+      display: flex; gap: 2.5rem; margin-top: 2.5rem;
+      padding-top: 2rem; border-top: 1px solid var(--cor-borda);
+    }
+    .stat-item { display: flex; flex-direction: column; gap: 0.15rem; }
+    .stat-valor {
+      font-family: var(--fonte-titulo); font-size: 1.6rem;
+      font-weight: 700; color: var(--cor-agua-brilho);
+    }
+    .stat-label { font-size: 0.78rem; color: var(--cor-texto-sutil); letter-spacing: 0.04em; text-transform: uppercase; }
+
+    /* card do hero */
+    .hero-visual { display: flex; justify-content: center; align-items: center; }
+    .card-destaque {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-xl); padding: 1.5rem;
+      width: 100%; max-width: 360px;
+      box-shadow: var(--sombra), var(--sombra-agua);
+      position: relative; overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card-destaque:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--sombra), var(--sombra-hover);
+    }
+    .card-destaque::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--cor-agua-profunda), var(--cor-mistico), var(--cor-agua-clara));
+    }
+    .card-capa {
+      width: 100%; height: 200px;
+      background: linear-gradient(135deg, #0f2a35 0%, #1a4050 40%, #0d2030 100%);
+      border-radius: var(--raio); margin-bottom: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 5rem; position: relative; overflow: hidden;
+    }
+    .card-capa::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0; right: 0; height: 70px;
+      background: linear-gradient(transparent, rgba(10,25,30,0.85));
+    }
+    .card-tag {
+      display: inline-block;
+      background: rgba(77,184,204,0.15); color: var(--cor-agua-clara);
+      border: 1px solid rgba(77,184,204,0.3);
+      padding: 0.2rem 0.65rem; border-radius: 4px;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.07em; margin-bottom: 0.6rem;
+    }
+    .card-titulo {
+      font-family: var(--fonte-titulo); font-size: 1.1rem;
+      color: var(--cor-texto); margin-bottom: 0.4rem;
+    }
+    .card-preco { font-size: 1.3rem; font-weight: 700; color: var(--cor-areia-clara); }
+    .card-preco .de {
+      font-size: 0.85rem; color: var(--cor-texto-sutil);
+      text-decoration: line-through; margin-right: 0.4rem; font-weight: 400;
+    }
+    .card-desconto {
+      display: inline-block; background: rgba(74,173,110,0.2);
+      color: var(--cor-verde-clara); border: 1px solid rgba(74,173,110,0.3);
+      padding: 0.15rem 0.5rem; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 700; margin-left: 0.4rem;
     }
 
-    .ver-todos:hover {
-      color: var(--cor-agua-brilho);
+    /* ===== DESTAQUE RÁPIDO (NOVO) ===== */
+    .faixa-destaques {
+      background: var(--cor-fundo-alt);
+      border-top: 1px solid var(--cor-borda);
+      border-bottom: 1px solid var(--cor-borda);
+      padding: 1.5rem 1.5rem;
+    }
+    .faixa-inner {
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .faixa-item {
+      display: flex; align-items: center; gap: 1rem;
+    }
+    .faixa-icone {
+      font-size: 1.75rem; flex-shrink: 0;
+    }
+    .faixa-texto strong {
+      display: block; font-size: 0.9rem; font-weight: 700;
+      color: var(--cor-texto); margin-bottom: 0.1rem;
+    }
+    .faixa-texto span {
+      font-size: 0.78rem; color: var(--cor-texto-sutil);
     }
 
-
-    #jogos {
-      background-color: var(--cor-fundo-alt);
+    /* ===== JOGO GRATUITO DO MÊS (NOVO) ===== */
+    .jogo-gratis-secao {
+      background: linear-gradient(160deg, #0d1e24 0%, #0b1a1f 100%);
+    }
+    .jogo-gratis-card {
+      background: var(--cor-card);
+      border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-xl);
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 0; overflow: hidden;
+      box-shadow: var(--sombra), var(--sombra-agua);
+      position: relative;
+    }
+    .jogo-gratis-card::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 70% 50%, rgba(26,96,112,0.15), transparent);
+      pointer-events: none;
+    }
+    .jogo-gratis-capa {
+      background: linear-gradient(135deg, #0f2a35 0%, #1a3a50 40%, #251535 100%);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 7rem; min-height: 260px;
+      position: relative;
+    }
+    .jogo-gratis-capa .badge-gratis {
+      position: absolute; top: 1.25rem; left: 1.25rem;
+      background: var(--cor-verde-clara); color: #0b1a1f;
+      padding: 0.3rem 0.8rem; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+    .jogo-gratis-info {
+      padding: 2.5rem 2rem;
+      display: flex; flex-direction: column; justify-content: center;
+    }
+    .jogo-gratis-info .label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--cor-agua-media);
+      margin-bottom: 0.75rem;
+    }
+    .jogo-gratis-info h2 {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      color: var(--cor-texto); line-height: 1.15; margin-bottom: 0.5rem;
+    }
+    .jogo-gratis-info .genero {
+      font-size: 0.85rem; color: var(--cor-texto-sutil); margin-bottom: 1rem;
+    }
+    .jogo-gratis-info p {
+      color: var(--cor-texto-muted); font-size: 0.92rem;
+      line-height: 1.75; margin-bottom: 1.75rem;
+    }
+    .preco-gratis {
+      display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1.25rem;
+    }
+    .preco-gratis .original {
+      font-size: 0.9rem; color: var(--cor-texto-sutil);
+      text-decoration: line-through;
+    }
+    .preco-gratis .agora {
+      font-size: 1.5rem; font-weight: 800; color: var(--cor-verde-clara);
+    }
+    .tempo-gratis {
+      font-size: 0.78rem; color: var(--cor-texto-sutil);
+      margin-top: 0.75rem;
     }
 
+    /* ===== GRID DE JOGOS ===== */
+    #jogos { background-color: var(--cor-fundo-alt); }
     .grid-jogos {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(195px, 1fr));
       gap: 1.25rem;
     }
-
     .jogo-card {
       background: var(--cor-card);
       border: 1px solid var(--cor-borda);
-      border-radius: var(--raio-lg);
-      overflow: hidden;
-      transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+      border-radius: var(--raio-lg); overflow: hidden;
+      transition: transform 0.22s, box-shadow 0.22s, border-color 0.22s;
       cursor: pointer;
     }
-
-    .jogo-card:hover,
-    .jogo-card:focus-within {
-      transform: translateY(-4px);
-      box-shadow: var(--sombra), 0 0 20px rgba(77,184,204,0.15);
+    .jogo-card:hover, .jogo-card:focus-within {
+      transform: translateY(-5px);
+      box-shadow: var(--sombra), 0 0 24px rgba(77,184,204,0.18);
       border-color: var(--cor-agua-media);
     }
-
     .jogo-thumb {
-      width: 100%;
-      aspect-ratio: 2/3;
-      object-fit: cover;
+      width: 100%; aspect-ratio: 2/3;
       background: linear-gradient(160deg, #0f2a35, #1a3a28);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 3rem;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 3rem; position: relative;
     }
-
-    .jogo-info {
-      padding: 0.85rem;
+    .jogo-thumb .tag-thumb {
+      position: absolute; top: 0.6rem; left: 0.6rem;
+      background: rgba(11,26,31,0.85); color: var(--cor-agua-clara);
+      font-size: 0.65rem; font-weight: 700; padding: 0.15rem 0.45rem;
+      border-radius: 3px; text-transform: uppercase; letter-spacing: 0.06em;
     }
-
+    .jogo-thumb .tag-gratis-thumb {
+      position: absolute; top: 0.6rem; left: 0.6rem;
+      background: var(--cor-verde-clara); color: #0b1a1f;
+      font-size: 0.65rem; font-weight: 800; padding: 0.15rem 0.45rem;
+      border-radius: 3px; text-transform: uppercase; letter-spacing: 0.06em;
+    }
+    .jogo-info { padding: 0.9rem; }
     .jogo-nome {
-      font-family: var(--fonte-titulo);
-      font-size: 0.9rem;
-      color: var(--cor-texto);
-      margin-bottom: 0.3rem;
-      line-height: 1.3;
+      font-family: var(--fonte-titulo); font-size: 0.88rem;
+      color: var(--cor-texto); margin-bottom: 0.25rem; line-height: 1.3;
     }
+    .jogo-genero { font-size: 0.72rem; color: var(--cor-texto-sutil); margin-bottom: 0.5rem; }
+    .jogo-preco { font-weight: 700; font-size: 0.95rem; color: var(--cor-areia-clara); }
+    .jogo-preco.gratis { color: var(--cor-verde-clara); }
 
-    .jogo-genero {
-      font-size: 0.75rem;
-      color: var(--cor-texto-sutil);
-      margin-bottom: 0.5rem;
-    }
-
-    .jogo-preco {
-      font-weight: 700;
-      font-size: 1rem;
-      color: var(--cor-areia-clara);
-    }
-
-    .jogo-preco.gratis {
-      color: var(--cor-folha-clara);
-    }
-
-    #categorias {
-      background-color: var(--cor-fundo);
-    }
-
+    /* ===== CATEGORIAS ===== */
+    #categorias { background-color: var(--cor-fundo); }
     .grid-categorias {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(145px, 1fr));
       gap: 1rem;
     }
-
     .categoria-card {
-      background: var(--cor-card);
-      border: 1px solid var(--cor-borda);
-      border-radius: var(--raio-lg);
-      padding: 1.5rem 1rem;
+      background: var(--cor-card); border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg); padding: 1.5rem 1rem;
       text-align: center;
-      transition: background 0.2s, border-color 0.2s, transform 0.15s;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 0.6rem;
+      transition: background 0.2s, border-color 0.2s, transform 0.18s;
+      cursor: pointer; display: flex; flex-direction: column;
+      align-items: center; gap: 0.6rem;
     }
-
-    .categoria-card:hover,
-    .categoria-card:focus {
-      background: rgba(26,96,112,0.2);
+    .categoria-card:hover, .categoria-card:focus {
+      background: rgba(26,96,112,0.22);
       border-color: var(--cor-agua-media);
-      transform: translateY(-2px);
+      transform: translateY(-3px);
     }
-
-    .categoria-icone {
-      font-size: 2rem;
-    }
-
+    .categoria-icone { font-size: 2rem; }
     .categoria-nome {
-      font-size: 0.85rem;
-      font-weight: 700;
-      color: var(--cor-texto-muted);
-      letter-spacing: 0.03em;
+      font-size: 0.85rem; font-weight: 700;
+      color: var(--cor-texto-muted); letter-spacing: 0.03em;
     }
 
-       #destaques {
+    /* ===== BANNER DESTAQUE ===== */
+    #destaques {
       background: linear-gradient(180deg, var(--cor-fundo-alt) 0%, var(--cor-fundo) 100%);
     }
-
     .banner-destaque {
-      background: var(--cor-card);
-      border: 1px solid var(--cor-borda);
-      border-radius: var(--raio-lg);
-      padding: 3rem 2.5rem;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-      position: relative;
-      overflow: hidden;
+      background: var(--cor-card); border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-xl); padding: 3rem 2.5rem;
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 3rem; align-items: center;
+      position: relative; overflow: hidden;
       box-shadow: var(--sombra-agua);
     }
-
     .banner-destaque::before {
-      content: '';
-      position: absolute;
-      inset: 0;
+      content: ''; position: absolute; inset: 0;
       background: radial-gradient(ellipse 70% 100% at 80% 50%, rgba(26,96,112,0.2), transparent);
       pointer-events: none;
     }
-
     .banner-tag {
       display: inline-block;
-      background: rgba(139,94,158,0.2);
-      color: var(--cor-mistico-clara);
+      background: rgba(139,94,158,0.2); color: var(--cor-mistico-clara);
       border: 1px solid rgba(139,94,158,0.4);
-      padding: 0.25rem 0.75rem;
-      border-radius: 4px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      margin-bottom: 1rem;
+      padding: 0.25rem 0.75rem; border-radius: 4px;
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem;
     }
-
     .banner-titulo {
       font-family: var(--fonte-titulo);
       font-size: clamp(1.5rem, 3vw, 2.4rem);
-      color: var(--cor-texto);
-      margin-bottom: 0.75rem;
-      line-height: 1.2;
+      color: var(--cor-texto); margin-bottom: 0.75rem; line-height: 1.2;
     }
-
     .banner-desc {
-      color: var(--cor-texto-muted);
-      font-size: 0.95rem;
-      margin-bottom: 1.75rem;
-      line-height: 1.8;
+      color: var(--cor-texto-muted); font-size: 0.95rem;
+      margin-bottom: 1.75rem; line-height: 1.8;
     }
-
     .banner-imagem {
-      width: 100%;
-      aspect-ratio: 16/10;
+      width: 100%; aspect-ratio: 16/10;
       background: linear-gradient(135deg, #0f2a35 0%, #1a1530 50%, #0f2a1f 100%);
-      border-radius: var(--raio);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 5rem;
-      position: relative;
+      border-radius: var(--raio); display: flex; align-items: center;
+      justify-content: center; font-size: 5rem; position: relative;
     }
 
-    #sobre {
-      background-color: var(--cor-fundo-alt);
-    }
-
+    /* ===== SOBRE ===== */
+    #sobre { background-color: var(--cor-fundo-alt); }
     .grid-pilares {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-      gap: 1.5rem;
-      margin-top: 2.5rem;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 1.5rem; margin-top: 2.5rem;
     }
-
     .pilar-card {
-      background: var(--cor-card);
-      border: 1px solid var(--cor-borda);
-      border-radius: var(--raio-lg);
-      padding: 1.75rem 1.5rem;
-      position: relative;
-      overflow: hidden;
+      background: var(--cor-card); border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg); padding: 1.75rem 1.5rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
     }
-
+    .pilar-card:hover { border-color: var(--cor-agua-media); transform: translateY(-3px); }
     .pilar-card::after {
-      content: '';
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 60px;
-      height: 3px;
-      background: var(--cor-agua-media);
+      content: ''; position: absolute; bottom: 0; left: 0;
+      width: 60px; height: 3px; background: var(--cor-agua-media);
     }
-
-    .pilar-icone {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-    }
-
+    .pilar-icone { font-size: 2rem; margin-bottom: 1rem; }
     .pilar-titulo {
-      font-family: var(--fonte-titulo);
-      font-size: 1rem;
-      color: var(--cor-agua-brilho);
+      font-family: var(--fonte-titulo); font-size: 1rem;
+      color: var(--cor-agua-brilho); margin-bottom: 0.5rem;
+    }
+    .pilar-desc { color: var(--cor-texto-muted); font-size: 0.88rem; line-height: 1.7; }
+
+    /* ===== ESG (NOVO) ===== */
+    .esg-secao { background: var(--cor-fundo); }
+    .esg-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 2.5rem;
+    }
+    .esg-card {
+      background: var(--cor-card); border: 1px solid var(--cor-borda);
+      border-radius: var(--raio-lg); padding: 2rem 1.5rem;
+      position: relative; overflow: hidden;
+    }
+    .esg-letra {
+      font-family: var(--fonte-titulo); font-size: 3.5rem;
+      font-weight: 900; line-height: 1;
       margin-bottom: 0.5rem;
     }
-
-    .pilar-desc {
-      color: var(--cor-texto-muted);
-      font-size: 0.9rem;
-      line-height: 1.7;
+    .esg-card:nth-child(1) .esg-letra { color: rgba(74,173,110,0.4); }
+    .esg-card:nth-child(2) .esg-letra { color: rgba(77,184,204,0.4); }
+    .esg-card:nth-child(3) .esg-letra { color: rgba(139,94,158,0.4); }
+    .esg-titulo {
+      font-family: var(--fonte-titulo); font-size: 0.95rem;
+      margin-bottom: 0.5rem;
     }
+    .esg-card:nth-child(1) .esg-titulo { color: var(--cor-verde-clara); }
+    .esg-card:nth-child(2) .esg-titulo { color: var(--cor-agua-brilho); }
+    .esg-card:nth-child(3) .esg-titulo { color: var(--cor-mistico-clara); }
+    .esg-desc { color: var(--cor-texto-muted); font-size: 0.875rem; line-height: 1.7; }
 
-
-    footer {
-      background-color: var(--cor-fundo);
+    /* ===== NEWSLETTER / CTA (NOVO) ===== */
+    .cta-secao {
+      background: linear-gradient(135deg, var(--cor-fundo-alt) 0%, #0d1e28 100%);
       border-top: 1px solid var(--cor-borda);
-      padding: 3rem 1.5rem;
     }
+    .cta-box {
+      max-width: 620px; margin: 0 auto; text-align: center;
+    }
+    .cta-box h2 {
+      font-family: var(--fonte-titulo);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      color: var(--cor-agua-brilho); margin-bottom: 0.75rem;
+    }
+    .cta-box p { color: var(--cor-texto-muted); margin-bottom: 2rem; }
+    .cta-acoes { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
 
+    /* ===== FOOTER ===== */
+    footer {
+      background-color: #080f12;
+      border-top: 1px solid var(--cor-borda);
+      padding: 3.5rem 1.5rem;
+    }
     .footer-conteudo {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 1.5fr repeat(3, 1fr);
+      max-width: 1200px; margin: 0 auto;
+      display: grid; grid-template-columns: 1.5fr repeat(3, 1fr);
       gap: 2rem;
     }
-
-    .footer-marca .logo-texto {
-      display: block;
-      margin-bottom: 0.75rem;
-    }
-
+    .footer-marca .logo-texto { display: block; margin-bottom: 0.75rem; }
     .footer-marca p {
-      color: var(--cor-texto-sutil);
-      font-size: 0.85rem;
-      line-height: 1.7;
-      max-width: 240px;
+      color: var(--cor-texto-sutil); font-size: 0.85rem;
+      line-height: 1.7; max-width: 240px;
     }
-
     .footer-coluna h3 {
-      font-family: var(--fonte-titulo);
-      font-size: 0.85rem;
-      color: var(--cor-areia-clara);
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      margin-bottom: 1rem;
+      font-family: var(--fonte-titulo); font-size: 0.82rem;
+      color: var(--cor-areia-clara); letter-spacing: 0.08em;
+      text-transform: uppercase; margin-bottom: 1rem;
     }
-
-    .footer-coluna ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .footer-coluna a {
-      color: var(--cor-texto-sutil);
-      font-size: 0.875rem;
-      transition: color 0.2s;
-    }
-
-    .footer-coluna a:hover,
-    .footer-coluna a:focus {
-      color: var(--cor-texto-muted);
-    }
-
+    .footer-coluna ul { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-coluna a { color: var(--cor-texto-sutil); font-size: 0.875rem; transition: color 0.2s; }
+    .footer-coluna a:hover, .footer-coluna a:focus { color: var(--cor-texto-muted); }
     .footer-base {
-      max-width: 1200px;
-      margin: 2rem auto 0;
-      padding-top: 1.5rem;
-      border-top: 1px solid rgba(255,255,255,0.06);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
+      max-width: 1200px; margin: 2rem auto 0;
+      padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05);
+      display: flex; justify-content: space-between;
+      align-items: center; gap: 1rem; flex-wrap: wrap;
     }
+    .footer-base p { color: var(--cor-texto-sutil); font-size: 0.8rem; }
 
-    .footer-base p {
-      color: var(--cor-texto-sutil);
-      font-size: 0.8rem;
+    /* ===== RESPONSIVO ===== */
+    @media (max-width: 900px) {
+      .esg-grid { grid-template-columns: 1fr; }
+      .jogo-gratis-card { grid-template-columns: 1fr; }
+      .jogo-gratis-capa { min-height: 180px; }
     }
-
-
     @media (max-width: 768px) {
-      .hero-conteudo {
-        grid-template-columns: 1fr;
-      }
-
-      .hero-visual {
-        display: none;
-      }
-
-      .banner-destaque {
-        grid-template-columns: 1fr;
-      }
-
-      .banner-imagem {
-        display: none;
-      }
-
-      .footer-conteudo {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .nav-links {
-        display: none;
-      }
+      .hero-conteudo { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+      .banner-destaque { grid-template-columns: 1fr; }
+      .banner-imagem { display: none; }
+      .footer-conteudo { grid-template-columns: 1fr 1fr; }
+      .nav-links { display: none; }
+      .faixa-inner { grid-template-columns: 1fr; gap: 1rem; }
+      .hero-stats { gap: 1.5rem; }
     }
-
     @media (max-width: 480px) {
-      .footer-conteudo {
-        grid-template-columns: 1fr;
-      }
+      .footer-conteudo { grid-template-columns: 1fr; }
+      .hero-stats { flex-wrap: wrap; }
     }
-
     @media (prefers-reduced-motion: reduce) {
-      * {
-        transition: none !important;
-      }
+      * { transition: none !important; animation: none !important; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Skip link para acessibilidade por teclado -->
   <a href="#conteudo-principal" class="skip-link">Ir para o conteúdo principal</a>
 
-  <!-- ====== CABEÇALHO / NAVEGAÇÃO ====== -->
+  <!-- ====== CABEÇALHO ====== -->
   <header>
     <nav role="navigation" aria-label="Navegação principal">
-      <a href="#" class="logo" aria-label="Iara Games - Página inicial">
+      <a href="index.html" class="logo" aria-label="Iara Games - Página inicial">
         <span class="logo-icone" aria-hidden="true">🌊</span>
         <span class="logo-texto">Iara Games</span>
       </a>
-
       <ul class="nav-links" role="list">
         <li><a href="#jogos">Jogos</a></li>
         <li><a href="#categorias">Categorias</a></li>
         <li><a href="#destaques">Destaques</a></li>
         <li><a href="#sobre">Sobre</a></li>
-        <li><a href="#login" class="btn-nav">Entrar</a></li>
+        <li><a href="cadastro.html" class="btn-nav">Entrar</a></li>
       </ul>
     </nav>
   </header>
 
   <main id="conteudo-principal">
 
+    <!-- ====== HERO ====== -->
     <section class="hero" aria-labelledby="hero-titulo">
       <div class="hero-conteudo">
         <div class="hero-texto">
-          <p class="hero-subtitulo">A plataforma brasileira de games</p>
-          <h1 id="hero-titulo">Mergulhe no universo dos jogos</h1>
+          <div class="hero-badge" aria-label="Sprint 2 - Nova versão">
+            <span aria-hidden="true">🌊</span> A plataforma brasileira de games
+          </div>
+          <h1 id="hero-titulo">Mergulhe no<br><em>universo</em> dos jogos</h1>
           <p class="hero-desc">
             Descubra, explore e jogue. Iara Games reúne os melhores títulos nacionais e internacionais em um só lugar — com a alma do Brasil nas águas profundas do entretenimento digital.
           </p>
           <div class="hero-acoes">
             <a href="#jogos" class="btn btn-primario">Explorar jogos</a>
-            <a href="#sobre" class="btn btn-secundario">Saiba mais</a>
+            <a href="cadastro.html" class="btn btn-secundario">Criar conta grátis</a>
+          </div>
+          <div class="hero-stats" aria-label="Estatísticas da plataforma">
+            <div class="stat-item">
+              <span class="stat-valor">500+</span>
+              <span class="stat-label">Jogos</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-valor">120+</span>
+              <span class="stat-label">Devs BR</span>
+            </div>
+            <div class="stat-item">
+              <span class="stat-valor">50k+</span>
+              <span class="stat-label">Jogadores</span>
+            </div>
           </div>
         </div>
 
         <div class="hero-visual" aria-hidden="true">
           <div class="card-destaque">
             <div class="card-capa">🎮</div>
-            <span class="card-tag">Em destaque</span>
-            <h2 class="card-titulo">Jogo da Semana</h2>
+            <span class="card-tag">🔥 Em destaque</span>
+            <h2 class="card-titulo">Iara: A Guardiã</h2>
+            <p style="font-size:0.78rem;color:var(--cor-texto-sutil);margin-bottom:0.6rem;">RPG · Aventura · Nacional</p>
             <p class="card-preco">
               <span class="de">R$ 79,90</span>
               R$ 39,90
+              <span class="card-desconto">-50%</span>
             </p>
           </div>
         </div>
       </div>
     </section>
 
+    <!-- ====== FAIXA DE DIFERENCIAIS ====== -->
+    <div class="faixa-destaques" role="region" aria-label="Diferenciais da plataforma">
+      <div class="faixa-inner">
+        <div class="faixa-item">
+          <span class="faixa-icone" aria-hidden="true">🎁</span>
+          <div class="faixa-texto">
+            <strong>Jogo gratuito todo mês</strong>
+            <span>Resgate sem custo para sua biblioteca</span>
+          </div>
+        </div>
+        <div class="faixa-item">
+          <span class="faixa-icone" aria-hidden="true">🌱</span>
+          <div class="faixa-texto">
+            <strong>Apoio a devs brasileiros</strong>
+            <span>Mais de 120 estúdios nacionais na plataforma</span>
+          </div>
+        </div>
+        <div class="faixa-item">
+          <span class="faixa-icone" aria-hidden="true">🔒</span>
+          <div class="faixa-texto">
+            <strong>Compra 100% segura</strong>
+            <span>Pagamento protegido e entrega instantânea</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ====== JOGO GRATUITO DO MÊS ====== -->
+    <section class="jogo-gratis-secao" aria-labelledby="titulo-gratis">
+      <div class="container">
+        <div class="secao-header">
+          <div>
+            <h2 id="titulo-gratis" class="secao-titulo">Gratuito este mês</h2>
+            <p class="secao-subtitulo">Resgate agora e leve para sua biblioteca para sempre</p>
+          </div>
+        </div>
+        <div class="jogo-gratis-card">
+          <div class="jogo-gratis-capa" aria-hidden="true">
+            🌿
+            <span class="badge-gratis">Grátis</span>
+          </div>
+          <div class="jogo-gratis-info">
+            <p class="label">🎁 Jogo gratuito do mês — Abril 2025</p>
+            <h2>Floresta Encantada</h2>
+            <p class="genero">Aventura · RPG · Desenvolvido no Brasil</p>
+            <p>Explore uma floresta amazônica mágica repleta de criaturas do folclore brasileiro. Ajude a Iara a restaurar o equilíbrio das águas em uma aventura inesquecível para todas as idades.</p>
+            <div class="preco-gratis">
+              <span class="original">R$ 49,90</span>
+              <span class="agora">Grátis</span>
+            </div>
+            <a href="cadastro.html" class="btn btn-primario">Resgatar agora →</a>
+            <p class="tempo-gratis">⏱ Disponível até 30/04/2025 · Necessário criar conta</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== JOGOS POPULARES ====== -->
     <section id="jogos" aria-labelledby="titulo-jogos">
       <div class="container">
         <div class="secao-header">
@@ -828,18 +775,23 @@
         </div>
 
         <div class="grid-jogos" role="list">
-          <!-- Cada card seria um jogo real futuramente -->
-          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Floresta Encantada">
-            <div class="jogo-thumb" aria-hidden="true">🌿</div>
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Floresta Encantada — Aventura RPG — R$ 49,90">
+            <div class="jogo-thumb" aria-hidden="true">
+              🌿
+              <span class="tag-gratis-thumb">Grátis</span>
+            </div>
             <div class="jogo-info">
               <h3 class="jogo-nome">Floresta Encantada</h3>
               <p class="jogo-genero">Aventura · RPG</p>
-              <p class="jogo-preco">R$ 49,90</p>
+              <p class="jogo-preco gratis">Gratuito</p>
             </div>
           </article>
 
-          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Lendas do Rio">
-            <div class="jogo-thumb" aria-hidden="true">🐊</div>
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Lendas do Rio — Ação Plataforma — R$ 29,90">
+            <div class="jogo-thumb" aria-hidden="true">
+              🐊
+              <span class="tag-thumb">Nacional</span>
+            </div>
             <div class="jogo-info">
               <h3 class="jogo-nome">Lendas do Rio</h3>
               <p class="jogo-genero">Ação · Plataforma</p>
@@ -847,8 +799,11 @@
             </div>
           </article>
 
-          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Cosmos Tribal">
-            <div class="jogo-thumb" aria-hidden="true">🌌</div>
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Cosmos Tribal — Estratégia Puzzle — R$ 19,90">
+            <div class="jogo-thumb" aria-hidden="true">
+              🌌
+              <span class="tag-thumb">Indie</span>
+            </div>
             <div class="jogo-info">
               <h3 class="jogo-nome">Cosmos Tribal</h3>
               <p class="jogo-genero">Estratégia · Puzzle</p>
@@ -856,8 +811,11 @@
             </div>
           </article>
 
-          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Caçador de Sombras - gratuito">
-            <div class="jogo-thumb" aria-hidden="true">⚔️</div>
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Caçador de Sombras — RPG Indie — gratuito">
+            <div class="jogo-thumb" aria-hidden="true">
+              ⚔️
+              <span class="tag-gratis-thumb">Grátis</span>
+            </div>
             <div class="jogo-info">
               <h3 class="jogo-nome">Caçador de Sombras</h3>
               <p class="jogo-genero">RPG · Indie</p>
@@ -865,7 +823,7 @@
             </div>
           </article>
 
-          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Mar de Fogo">
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Mar de Fogo — Corrida Arcade — R$ 14,90">
             <div class="jogo-thumb" aria-hidden="true">🔥</div>
             <div class="jogo-info">
               <h3 class="jogo-nome">Mar de Fogo</h3>
@@ -874,8 +832,11 @@
             </div>
           </article>
 
-          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Espírito da Mata">
-            <div class="jogo-thumb" aria-hidden="true">🦅</div>
+          <article class="jogo-card" role="listitem" tabindex="0" aria-label="Jogo: Espírito da Mata — Exploração Indie — R$ 34,90">
+            <div class="jogo-thumb" aria-hidden="true">
+              🦅
+              <span class="tag-thumb">Nacional</span>
+            </div>
             <div class="jogo-info">
               <h3 class="jogo-nome">Espírito da Mata</h3>
               <p class="jogo-genero">Exploração · Indie</p>
@@ -886,11 +847,11 @@
       </div>
     </section>
 
+    <!-- ====== CATEGORIAS ====== -->
     <section id="categorias" aria-labelledby="titulo-categorias">
       <div class="container">
         <h2 id="titulo-categorias" class="secao-titulo">Categorias</h2>
         <p class="secao-subtitulo">Explore por estilo de jogo</p>
-
         <div class="grid-categorias" role="list">
           <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Ação">
             <span class="categoria-icone" aria-hidden="true">⚔️</span>
@@ -916,7 +877,7 @@
             <span class="categoria-icone" aria-hidden="true">💎</span>
             <span class="categoria-nome">Indie</span>
           </a>
-          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Multijogador">
+          <a href="#categorias" class="categoria-card" role="listitem" aria-label="Categoria: Multiplayer">
             <span class="categoria-icone" aria-hidden="true">👥</span>
             <span class="categoria-nome">Multi</span>
           </a>
@@ -928,6 +889,7 @@
       </div>
     </section>
 
+    <!-- ====== BANNER DESTAQUE ====== -->
     <section id="destaques" aria-labelledby="titulo-destaque">
       <div class="container">
         <div class="banner-destaque">
@@ -937,22 +899,21 @@
             <p class="banner-desc">
               Todo mês, a Iara Games seleciona um título especial com desconto exclusivo para membros da plataforma. Junte-se à comunidade e não perca as ofertas.
             </p>
-            <a href="#jogos" class="btn btn-primario">Ver oferta</a>
+            <a href="cadastro.html" class="btn btn-primario">Criar conta e ver oferta</a>
           </div>
           <div class="banner-imagem" aria-hidden="true">🎯</div>
         </div>
       </div>
     </section>
 
+    <!-- ====== SOBRE ====== -->
     <section id="sobre" aria-labelledby="titulo-sobre">
       <div class="container">
         <h2 id="titulo-sobre" class="secao-titulo">Sobre a Iara Games</h2>
         <p class="secao-subtitulo">Uma plataforma feita com a alma do Brasil</p>
-
         <p style="color: var(--cor-texto-muted); max-width: 680px; margin-bottom: 0.5rem; line-height: 1.9;">
-          A Iara Games nasce da inspiração na lenda da Iara — a sereia dos rios amazônicos, guardiã das águas e das histórias do povo brasileiro. Nossa plataforma é um portal entre jogadores e jogos, com curadoria, segurança e uma experiência fluida como as águas do rio.
+          A Iara Games nasce da inspiração na lenda da Iara, a sereia dos rios amazônicos, guardiã das águas e das histórias do povo brasileiro. Nossa plataforma é um portal entre jogadores e jogos, com curadoria, segurança e uma experiência fluida como as águas do rio.
         </p>
-
         <div class="grid-pilares">
           <div class="pilar-card">
             <div class="pilar-icone" aria-hidden="true">🎮</div>
@@ -978,26 +939,54 @@
       </div>
     </section>
 
-    <section id="login" aria-labelledby="titulo-login" style="padding: 4rem 1.5rem; background: var(--cor-fundo);">
-      <div class="container" style="text-align:center; max-width: 480px;">
-        <h2 id="titulo-login" class="secao-titulo" style="margin-bottom:0.5rem;">Crie sua conta</h2>
-        <p style="color:var(--cor-texto-muted); margin-bottom:2rem;">Acesse o catálogo completo, salve favoritos e gerencie sua biblioteca.</p>
-        <a href="#sobre" class="btn btn-primario" style="margin: 0 auto;">Começar agora</a>
-        <p style="margin-top: 1rem; font-size:0.875rem; color:var(--cor-texto-sutil);">
-          Já tem conta? <a href="#login">Entrar</a>
-        </p>
+    <!-- ====== ESG (NOVO) ====== -->
+    <section class="esg-secao" aria-labelledby="titulo-esg">
+      <div class="container">
+        <h2 id="titulo-esg" class="secao-titulo">Nosso compromisso ESG</h2>
+        <p class="secao-subtitulo">Tecnologia que respeita pessoas, cultura e o planeta</p>
+        <div class="esg-grid">
+          <div class="esg-card">
+            <div class="esg-letra" aria-hidden="true">E</div>
+            <h3 class="esg-titulo">Ambiental</h3>
+            <p class="esg-desc">Distribuição 100% digital elimina a produção de mídia física, embalagens e transporte — reduzindo significativamente a pegada de carbono dos jogos que você ama.</p>
+          </div>
+          <div class="esg-card">
+            <div class="esg-letra" aria-hidden="true">S</div>
+            <h3 class="esg-titulo">Social</h3>
+            <p class="esg-desc">Valorizamos a cultura brasileira e o folclore nacional. Priorizamos estúdios indie e desenvolvedores independentes, gerando renda e visibilidade para criadores de todo o Brasil.</p>
+          </div>
+          <div class="esg-card">
+            <div class="esg-letra" aria-hidden="true">G</div>
+            <h3 class="esg-titulo">Governança</h3>
+            <p class="esg-desc">Transparência nas políticas de preço, privacidade de dados em conformidade com a LGPD e acessibilidade como padrão — não como opção — em toda a plataforma.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====== CTA CONTA ====== -->
+    <section class="cta-secao" aria-labelledby="titulo-cta">
+      <div class="container">
+        <div class="cta-box">
+          <h2 id="titulo-cta">Pronto para mergulhar?</h2>
+          <p>Crie sua conta gratuita e acesse o catálogo completo, salve favoritos e resgate o jogo do mês.</p>
+          <div class="cta-acoes">
+            <a href="cadastro.html" class="btn btn-primario">Criar conta grátis</a>
+            <a href="cadastro.html" class="btn btn-secundario">Já tenho conta</a>
+          </div>
+        </div>
       </div>
     </section>
 
   </main>
 
+  <!-- ====== RODAPÉ ====== -->
   <footer role="contentinfo">
     <div class="footer-conteudo">
       <div class="footer-marca">
-        <a href="#" class="logo-texto" aria-label="Iara Games">🌊 Iara Games</a>
+        <a href="index.html" class="logo-texto" aria-label="Iara Games - Início">🌊 Iara Games</a>
         <p>Plataforma brasileira de distribuição de games. Mergulhe no universo dos jogos com a gente.</p>
       </div>
-
       <div class="footer-coluna">
         <h3>Explorar</h3>
         <ul>
@@ -1007,31 +996,28 @@
           <li><a href="#sobre">Novidades</a></li>
         </ul>
       </div>
-
       <div class="footer-coluna">
         <h3>Conta</h3>
         <ul>
-          <li><a href="#login">Entrar</a></li>
-          <li><a href="#login">Criar conta</a></li>
-          <li><a href="#sobre">Biblioteca</a></li>
-          <li><a href="#sobre">Favoritos</a></li>
+          <li><a href="cadastro.html">Entrar</a></li>
+          <li><a href="cadastro.html">Criar conta</a></li>
+          <li><a href="#">Biblioteca</a></li>
+          <li><a href="#">Favoritos</a></li>
         </ul>
       </div>
-
       <div class="footer-coluna">
         <h3>Suporte</h3>
         <ul>
-          <li><a href="#sobre">Ajuda</a></li>
-          <li><a href="#sobre">Política de privacidade</a></li>
-          <li><a href="#sobre">Termos de uso</a></li>
-          <li><a href="#sobre">Contato</a></li>
+          <li><a href="#">Ajuda</a></li>
+          <li><a href="#">Política de privacidade</a></li>
+          <li><a href="#">Termos de uso</a></li>
+          <li><a href="#">Contato</a></li>
         </ul>
       </div>
     </div>
-
     <div class="footer-base">
       <p>© 2025 Iara Games. Todos os direitos reservados.</p>
-      <p style="color:var(--cor-texto-sutil); font-size:0.8rem;">Feito com 💙 no Brasil</p>
+      <p style="color:var(--cor-texto-sutil);font-size:0.8rem;">Feito com 💙 no Brasil · LGPD compliant</p>
     </div>
   </footer>
 
