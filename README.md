@@ -1,4 +1,4 @@
-🌊 Iara Games — Sprint 02
+Iara Games — Sprint 02
 
 Plataforma brasileira de distribuição de games  
 Sprint 02 — Aprofundamento, Formulários e Evolução da Interface
